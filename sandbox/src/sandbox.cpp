@@ -1,6 +1,6 @@
 #include <engine.h>
 
-class sandbox : public app {
+class sandbox : public engine::app {
 public:
 	sandbox() {
 
@@ -10,8 +10,6 @@ public:
 	}
 };
 
-int main() {
-	sandbox* box = new sandbox();
-	box->run();
-	delete box;
+engine::app* engine::createApp() {
+	return new sandbox();
 }

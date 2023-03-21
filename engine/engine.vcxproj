@@ -53,12 +53,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\app.cpp" />
+    <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="src\app.hpp" />
+    <ClInclude Include="src\app\app.hpp" />
+    <ClInclude Include="src\entry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

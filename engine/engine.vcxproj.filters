@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\app.cpp">
+    <ClCompile Include="src\app\app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\app.hpp">
+    <ClInclude Include="src\app\app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
