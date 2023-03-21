@@ -8,6 +8,6 @@ app::~app() {
 }
 
 void app::run() {
-	printf("running");
+	printf("runneing");
 	while (true);
 }

@@ -10,7 +10,7 @@ public:
 	}
 };
 
-void main() {
+int main() {
 	sandbox* box = new sandbox();
 	box->run();
 	delete box;
