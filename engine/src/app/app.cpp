@@ -9,7 +9,7 @@ namespace engine {
 	}
 
 	void app::run() {
-		printf("running!");
+		printf("running!!");
 		while (true);
 	}
 }
