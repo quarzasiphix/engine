@@ -60,9 +60,9 @@
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
+    <ClInclude Include="src\log\log.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
