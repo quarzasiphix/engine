@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(ProjectDir)src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(ProjectDir)src;$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -53,11 +53,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
+    <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
   </ItemGroup>

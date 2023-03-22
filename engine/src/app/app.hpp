@@ -6,9 +6,7 @@ namespace engine {
 	public:
 		app();
 		~app();
-
 		void run();
 	};
-	
 	app* createApp();
 }
