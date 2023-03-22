@@ -9,7 +9,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bdaab12e-56e2-4d25-a04a-269170ea339c}</ProjectGuid>
+    <ProjectGuid>{3fffb026-3e8a-4e92-bc94-cd3ab07d2cd9}</ProjectGuid>
     <RootNamespace>engine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -53,16 +53,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
+    <ClCompile Include="src\log\log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
+    <ClInclude Include="src\log\log.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

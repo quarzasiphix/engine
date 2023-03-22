@@ -6,10 +6,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\sandbox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\engine\engine.vcxproj">
+      <Project>{3fffb026-3e8a-4e92-bc94-cd3ab07d2cd9}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{495cb61a-4763-4531-b060-b1bf31fd424d}</ProjectGuid>
+    <ProjectGuid>{e892b903-fce5-49df-b1d9-b1a6b62f978f}</ProjectGuid>
     <RootNamespace>sandbox</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -52,14 +60,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\sandbox.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\engine\engine.vcxproj">
-      <Project>{bdaab12e-56e2-4d25-a04a-269170ea339c}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
