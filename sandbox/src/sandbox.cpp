@@ -5,7 +5,7 @@ public:
 	sandbox() {
 		engine::log::init();
 		EN_CORE_WARN("intialised log!!");
-		EN_INFO("hello");
+		EN_INFO("hellooo");
 	}
 
 	~sandbox() {
