@@ -26,19 +26,19 @@
     <ClInclude Include="src\app\app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\log\log.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\common.hpp">
+    <ClInclude Include="src\entry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
