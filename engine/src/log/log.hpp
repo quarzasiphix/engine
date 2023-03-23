@@ -3,7 +3,6 @@
 namespace engine {
 	class ENGINE_API log {
 	public:
-		/// test comment
 		static void init();
 		inline static std::shared_ptr<spdlog::logger>& getCoreLog() { return s_corelogger; }
 		inline static std::shared_ptr<spdlog::logger>& getClientLog() { return s_clientlogger; }
