@@ -1,3 +1,4 @@
+#include <enpch.hpp>
 #include "log.hpp"
 
 namespace engine {

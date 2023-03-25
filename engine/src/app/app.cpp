@@ -1,3 +1,4 @@
+#include <enpch.hpp>
 #include "app.hpp"
 
 namespace engine {

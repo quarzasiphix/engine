@@ -2,7 +2,6 @@
 #include <common.hpp>
 
 namespace engine {
-
 	class ENGINE_API WindowResizeEvent : public Event {
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
