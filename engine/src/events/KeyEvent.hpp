@@ -1,5 +1,5 @@
 #pragma once
-#include "event.hpp"
+#include <common.hpp>
 
 namespace engine {
 	class ENGINE_API KeyEvent : public Event {
@@ -14,7 +14,8 @@ namespace engine {
 		int m_KeyCode;
 	};
 
-	class ENGINE_API KeyPressedEvent : public KeyEvent {
+	class ENGINE_API KeyPressedEvent : public KeyEvent
+	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
 			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
@@ -32,8 +33,18 @@ namespace engine {
 		int m_RepeatCount;
 	};
 
-	class ENGINE_API KeyReleasedEvent : public KeyEvent {
+	class ENGINE_API KeyReleasedEvent : public KeyEvent
+	{
 	public:
-		
+		KeyReleasedEvent(int keycode)
+			: KeyEvent(keycode) {}
+
+		std::string ToString() const override {
+			std::stringstream ss;
+			ss << "KeyReleasedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyReleased)
 	};
 }

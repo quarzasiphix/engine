@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
-#include <core.h>
+#include <common.hpp>
+
 namespace engine {
 	class ENGINE_API app {
 	public:
