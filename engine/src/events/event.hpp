@@ -1,9 +1,5 @@
 #pragma once
 #include <common.hpp>
-#include <events/AppEvent.hpp>
-#include <events/KeyEvent.hpp>
-#include <events/MouseEvent.hpp>
-
 
 namespace engine {
 

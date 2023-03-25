@@ -9,7 +9,9 @@ namespace engine {
 	}
 
 	void app::run() {
-		printf("running!!");
+		printf("running!!\n");
+		WindowResizeEvent e(1280, 720);
+		EN_TRACE(e);
 		while (true);
 	}
 }
