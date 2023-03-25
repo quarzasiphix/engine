@@ -62,7 +62,14 @@
     <ClInclude Include="includes\engine.h" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
+    <ClInclude Include="src\events\AppEvent.hpp" />
+    <ClInclude Include="src\events\event.hpp" />
+    <ClInclude Include="src\events\KeyEvent.hpp" />
+    <ClInclude Include="src\events\MouseEvent.hpp" />
     <ClInclude Include="src\log\log.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
