@@ -4,11 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine", "engine\engine.vcxproj", "{BDAAB12E-56E2-4D25-A04A-269170EA339C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{77FAAAE7-4D51-4B59-9294-4181A3630652} = {77FAAAE7-4D51-4B59-9294-4181A3630652}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sandbox", "sandbox\sandbox.vcxproj", "{495CB61A-4763-4531-B060-B1BF31FD424D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BDAAB12E-56E2-4D25-A04A-269170EA339C} = {BDAAB12E-56E2-4D25-A04A-269170EA339C}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw", "glfw\glfw.vcxproj", "{77FAAAE7-4D51-4B59-9294-4181A3630652}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +24,8 @@ Global
 		{BDAAB12E-56E2-4D25-A04A-269170EA339C}.Release|x64.Build.0 = Release|x64
 		{495CB61A-4763-4531-B060-B1BF31FD424D}.Release|x64.ActiveCfg = Release|x64
 		{495CB61A-4763-4531-B060-B1BF31FD424D}.Release|x64.Build.0 = Release|x64
+		{77FAAAE7-4D51-4B59-9294-4181A3630652}.Release|x64.ActiveCfg = Release|x64
+		{77FAAAE7-4D51-4B59-9294-4181A3630652}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

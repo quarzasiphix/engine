@@ -1,8 +1,8 @@
-#include <enpch.hpp>
 #include "app.hpp"
 
 namespace engine {
 	app::app() {
+		m_window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	app::~app() {
@@ -11,8 +11,8 @@ namespace engine {
 
 	void app::run() {
 		printf("running!!\n");
-		WindowResizeEvent e(1280, 720);
-		EN_TRACE(e);
-		while (true);
+		while (m_running) {
+			m_window->OnUpdate();
+		}
 	}
 }

@@ -25,4 +25,5 @@ namespace engine {
 #define EN_ERROR(...) ::engine::log::getClientLog()->error(__VA_ARGS__)
 #define EN_INFO(...)  ::engine::log::getClientLog()->info(__VA_ARGS__)
 #define EN_WARN(...)  ::engine::log::getClientLog()->warn(__VA_ARGS__)
+
 //#define EN_FATAL(...) ::engine::log::getClientLog()->fatal(__VA_ARGS__)
