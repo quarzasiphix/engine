@@ -10,7 +10,6 @@ namespace engine {
 	}
 
 	void app::run() {
-		printf("running!!\n");
 		while (m_running) {
 			m_window->OnUpdate();
 		}

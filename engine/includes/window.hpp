@@ -1,8 +1,5 @@
 #pragma once
 #include <common.hpp>
-#ifdef PLATFORM_WINDOWS
-	#include <platform/windows/WindowsWindow.hpp>
-#endif
 
 namespace engine {
 	struct WindowProps {
@@ -10,7 +7,7 @@ namespace engine {
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(const std::string& title = "Hazel Engine",
+		WindowProps(const std::string& title = "Engine",
 			unsigned int width = 1280,
 			unsigned int height = 720)
 			: Title(title), Width(width), Height(height) {}
