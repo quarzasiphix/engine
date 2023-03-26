@@ -59,7 +59,7 @@
     <ClInclude Include="includes\enpch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform-old\window.hpp">
+    <ClInclude Include="src\platform-old\windows\window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\platform-old\windows\WindowsWindow.hpp">

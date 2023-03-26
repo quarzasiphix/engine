@@ -65,7 +65,7 @@
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="src\platform-old\window.hpp" />
+    <ClInclude Include="src\platform-old\windows\window.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
     <ClInclude Include="src\events\AppEvent.hpp" />
