@@ -21,7 +21,7 @@
     <ClCompile Include="src\log\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
+    <ClCompile Include="src\window\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,10 +59,13 @@
     <ClInclude Include="includes\enpch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\window.hpp">
+    <ClInclude Include="src\platform-old\window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\windows\WindowsWindow.hpp">
+    <ClInclude Include="src\platform-old\windows\WindowsWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\window\window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
