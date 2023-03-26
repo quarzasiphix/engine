@@ -8,7 +8,7 @@ namespace engine {
 		~app();
 		void run();
 	private:
-		std::unique_ptr<Window> m_window;
+		std::unique_ptr<engine::Window> m_Window;
 		bool m_running = true;
 
 	};

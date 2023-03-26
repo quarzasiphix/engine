@@ -10,6 +10,7 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <string_view>
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
@@ -17,6 +18,3 @@
 
 #include <GLFW/glfw3.h>
 
-#ifdef PLATFORM_WINDOWS
-	#include <Windows.h>
-#endif // PLATFORM_WINDOWS
