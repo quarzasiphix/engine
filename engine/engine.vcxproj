@@ -58,14 +58,13 @@
   <ItemGroup>
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
-    <ClCompile Include="src\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="src\platform-old\windows\window.hpp" />
+    <ClInclude Include="includes\window.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
     <ClInclude Include="src\events\AppEvent.hpp" />
@@ -73,8 +72,7 @@
     <ClInclude Include="src\events\KeyEvent.hpp" />
     <ClInclude Include="src\events\MouseEvent.hpp" />
     <ClInclude Include="src\log\log.hpp" />
-    <ClInclude Include="src\platform-old\windows\WindowsWindow.hpp" />
-    <ClInclude Include="src\window\window.hpp" />
+    <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
