@@ -12,7 +12,7 @@ namespace engine {
 			: Title(title), Width(width), Height(height)
 		{}
 	};
-
+	/*
 	class ENGINE_API window {
 	public:
 		window(const windowProps& props);
@@ -45,5 +45,6 @@ namespace engine {
 
 		windowData m_data;
 	};
+	*/
 }
 
