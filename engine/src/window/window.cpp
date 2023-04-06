@@ -3,8 +3,8 @@
 namespace engine {
 	static bool s_GLFWInitialized = false;
 
-	window::window(const windowProps& props) {
-		init(props);
+	window::window() {
+		init();
 	}
 
 	window::~window() {
@@ -26,7 +26,7 @@ namespace engine {
 		return m_data.vsync;
 	}
 
-	void window::init(const windowProps& props) {
+	void window::init() {
 		m_data.Title = props.Title;
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
@@ -46,5 +46,9 @@ namespace engine {
 		glfwMakeContextCurrent(m_window);
 		glfwSetWindowUserPointer(m_window, &m_data);
 		setVsync(true);
+	}
+
+	void window::shutdown() {
+		glfwDestroyWindow(m_window);
 	}
 }

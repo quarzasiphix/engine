@@ -12,10 +12,10 @@ namespace engine {
 			: Title(title), Width(width), Height(height)
 		{}
 	};
-	/*
+	
 	class ENGINE_API window {
 	public:
-		window(const windowProps& props);
+		//window();
 		~window();
 
 
@@ -28,10 +28,10 @@ namespace engine {
 		bool isVsync() const;
 		using EventCallbackFn = std::function<void(Event&)>;
 		inline void setEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
-	
-	private:
-		void init(const windowProps& props);
+		windowProps props;
+		void init();
 		void shutdown();
+	private:
 
 		GLFWwindow* m_window;
 
@@ -45,6 +45,4 @@ namespace engine {
 
 		windowData m_data;
 	};
-	*/
 }
-

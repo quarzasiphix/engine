@@ -58,6 +58,7 @@
   <ItemGroup>
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
+    <ClCompile Include="src\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\enpch.hpp" />
