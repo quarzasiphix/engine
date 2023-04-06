@@ -58,6 +58,7 @@
   <ItemGroup>
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
+    <ClCompile Include="src\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\enpch.hpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="src\events\MouseEvent.hpp" />
     <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
+    <ClInclude Include="src\window\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

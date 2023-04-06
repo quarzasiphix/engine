@@ -2,7 +2,7 @@
 
 namespace engine {
 	app::app() {
-		//m_window = std::unique_ptr<window>(new window()); 
+		m_window = std::unique_ptr<window>(); 
 		//m_window->Create();
 	}
 
@@ -11,8 +11,8 @@ namespace engine {
 	}
 
 	void app::run() {
-		/*while (m_running) {
-			m_window->on_update();
-		}*/
+		while (m_running) {
+			m_window->onUpdate();
+		}
 	}
 }
