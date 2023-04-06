@@ -4,6 +4,8 @@ namespace engine {
 	static bool s_GLFWInitialized = false;
 
 	app::app() {
+		engine::log::init();
+
 		EN_CORE_INFO("Creating window {0} ({1}, {2})", "title", 300, 200);
 
 		if (!s_GLFWInitialized)
