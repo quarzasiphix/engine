@@ -12,6 +12,8 @@
 
 ![example](https://github.com/quarzasiphix/screenshots/blob/main/engine-example.png)
 
+--- 
+
 <h3> easy to work with project layout </h3>
 
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
