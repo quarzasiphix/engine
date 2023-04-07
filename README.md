@@ -16,7 +16,8 @@
 
 <h3> easy to work with project template </h3>
 
-<span style="text-decoration: underline;">#</span><p style="font-size: 10px;">using <a href="https://github.com/quarzasiphix/template" style="display: inline;">this template</a>.</p>
+<span style="text-decoration: underline;">#</span> using <a href="https://github.com/quarzasiphix/template" style="display:inline;">this template</a>.
+
 
 
 <u></u>
