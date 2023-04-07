@@ -21,10 +21,10 @@
     <ClCompile Include="src\log\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\opengl\opengl.cpp">
+    <ClCompile Include="src\renderer\opengl\opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gui\gui.cpp">
+    <ClCompile Include="src\renderer\gui\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,13 +56,16 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\opengl\opengl.hpp">
+    <ClInclude Include="src\renderer\opengl\opengl.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gui\gui.hpp">
+    <ClInclude Include="src\renderer\gui\gui.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\events\events.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

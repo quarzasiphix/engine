@@ -47,10 +47,8 @@ namespace engine {
         ImGui::NewFrame();
 
         ImGui::Begin("yoo");
-
         ImGui::ColorEdit3("clear color", (float*)&g.clear_color);
         ImGui::Text("sup");
-
         ImGui::End();
 
         ImGui::Render();
@@ -61,16 +59,7 @@ namespace engine {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         
-        ImGui::NewFrame();
-
-        ImGui::Begin("yoo");
-
-        ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
-        ImGui::Text("sup");
-
-        ImGui::End();
-
-        ImGui::Render();
+        ui(*this);
 
         glfwGetFramebufferSize(m_window, &this->display_w, &this->display_h);
         glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);

@@ -7,14 +7,12 @@
 #include <app/app.hpp>
 #include <log/log.hpp>
 
-#include <opengl/opengl.hpp>
-#include <gui/gui.hpp>
+#include <renderer/renderer.hpp>
 
 // ---- ---- ---- ---- ---- 
 
 
 
-//#include <events/events.hpp>
 
 /*
 #include <events/event.hpp>
@@ -25,3 +23,4 @@
 //#include <window/window.hpp>
 
 */
+//#include <events/events.hpp>

@@ -56,24 +56,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\gui\gui.cpp" />
-    <ClCompile Include="src\opengl\opengl.cpp" />
+    <ClCompile Include="src\renderer\gui\gui.cpp" />
+    <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\events\events.hpp" />
-    <ClInclude Include="src\gui\gui.hpp" />
+    <ClInclude Include="src\renderer\gui\gui.hpp" />
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
     <ClInclude Include="includes\window.hpp" />
-    <ClInclude Include="src\opengl\opengl.hpp" />
+    <ClInclude Include="src\renderer\opengl\opengl.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
     <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
+    <ClInclude Include="src\renderer\renderer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
