@@ -21,7 +21,7 @@
     <ClCompile Include="src\log\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\window\window.cpp">
+    <ClCompile Include="src\opengl\opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\window\window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\opengl.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
