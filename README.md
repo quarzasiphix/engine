@@ -14,9 +14,9 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 --- 
 
-# <p> basic c++ engine, with abstractions for logging, opengl and imgui </p>
+<h3> basic c++ engine, with abstractions for logging, opengl and imgui </h3>
 
-![example](https://github.com/quarzasiphix/screenshots/blob/main/engine-example.png)
+![example](https://github.com/quarzasiphix/screenshots/blob/main/engine-example-new.png)
 
 --- 
 
