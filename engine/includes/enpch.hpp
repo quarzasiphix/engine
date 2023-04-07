@@ -1,5 +1,9 @@
 #pragma once
 
+#pragma warning(push)
+#pragma warning(disable:4251)
+
+
 #include <iostream>
 #include <utility>
 #include <algorithm>
@@ -17,4 +21,6 @@
 #include <spdlog/fmt/ostr.h>
 
 #include <GLFW/glfw3.h>
+
+
 

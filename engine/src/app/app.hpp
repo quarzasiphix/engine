@@ -11,10 +11,6 @@ namespace engine {
 		opengl* gl;
 	private:
 		bool m_running = true;
-		
-		//std::unique_ptr<window> m_window{ new window() };
-		//std::unique_ptr<window> m_window;
-
 	};
 	app* createApp();
 }

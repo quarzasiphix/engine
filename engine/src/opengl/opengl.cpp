@@ -22,12 +22,16 @@ namespace engine {
 
 		/* Make the window's context current */
 		glfwMakeContextCurrent(m_window);
+		
+		ui = new gui(m_window);
 	}
 
 	bool opengl::run() {
 		while(!glfwWindowShouldClose(m_window))
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			ui->run(m_window);
 
 			glfwSwapBuffers(m_window);
 
