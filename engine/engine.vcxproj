@@ -62,6 +62,7 @@
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\events\events.hpp" />
     <ClInclude Include="src\gui\gui.hpp" />
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />
@@ -71,13 +72,8 @@
     <ClInclude Include="src\opengl\opengl.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
-    <ClInclude Include="src\events\AppEvent.hpp" />
-    <ClInclude Include="src\events\event.hpp" />
-    <ClInclude Include="src\events\KeyEvent.hpp" />
-    <ClInclude Include="src\events\MouseEvent.hpp" />
     <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
-    <ClInclude Include="src\window\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

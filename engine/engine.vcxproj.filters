@@ -47,18 +47,6 @@
     <ClInclude Include="src\log\log.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\events\event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\events\KeyEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\events\AppEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\events\MouseEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\enpch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,13 +56,13 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\window\window.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\opengl\opengl.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gui\gui.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\events.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

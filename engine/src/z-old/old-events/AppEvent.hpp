@@ -2,7 +2,8 @@
 #include <common.hpp>
 
 namespace engine {
-	class ENGINE_API WindowResizeEvent : public Event {
+	class ENGINE_API WindowResizeEvent : public Event
+	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height) {}
@@ -10,7 +11,8 @@ namespace engine {
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
 
-		std::string ToString() const override {
+		std::string ToString() const override
+		{
 			std::stringstream ss;
 			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
 			return ss.str();
@@ -50,7 +52,7 @@ namespace engine {
 	};
 
 	class ENGINE_API AppRenderEvent : public Event
-{
+	{
 	public:
 		AppRenderEvent() {}
 
