@@ -16,10 +16,8 @@
 
 <h3> easy to work with project template </h3>
 <span style="display:inline;">
-<p> using this template: </p>
- 
-[template](https://github.com/quarzasiphix/template)
- 
+    <p style="display:inline;"> using this template: </p>
+    <a href="https://github.com/quarzasiphix/template" style="display:inline;">template</a>
 </span>
  
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
