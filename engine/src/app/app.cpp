@@ -4,9 +4,9 @@ namespace engine {
 	static bool s_GLFWInitialized = false;
 
 	app::app() {
-
 		engine::log::init();
-		m_window->init();
+		m_window = new window();
+		//m_window->init();
 	}
 	/*
 		
@@ -33,13 +33,13 @@ namespace engine {
 		*/
 
 	app::~app() {
-	
+		
 	}
 
 	void app::run() {
-		while (m_running) {
+		/*while (m_running) {
 			m_window->onUpdate();
-		}
+		}*/
 	}
 		/* Loop until the user closes the window 
 		while (!glfwWindowShouldClose(m_window))

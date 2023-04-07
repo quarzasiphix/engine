@@ -15,6 +15,7 @@ namespace engine {
 	
 	class ENGINE_API window {
 	public:
+		window();
 		//window();
 		~window();
 
