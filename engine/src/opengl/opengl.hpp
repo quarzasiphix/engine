@@ -1,7 +1,6 @@
 #pragma once
 #include <common.hpp>
 
-
 namespace engine {
 	struct windowProps {
 		std::string Title;

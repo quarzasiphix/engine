@@ -3,7 +3,13 @@
 namespace engine {
 	app::app() {
 		engine::log::init();
-		gl = new opengl(windowProps("yoo", 300, 500));
+		gl = new opengl(
+			windowProps(
+				"yoo", 
+				500, 
+				700
+			)
+		);
 	}
 
 	app::~app() {
@@ -11,7 +17,9 @@ namespace engine {
 	}
 
 	void app::run() {
-		while (m_running) if (!gl->run()) m_running = false;
+		while (m_running) 
+			if (!gl->run()) 
+			  m_running = false;
 	}
 }
 

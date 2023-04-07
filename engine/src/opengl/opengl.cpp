@@ -23,7 +23,10 @@ namespace engine {
 		/* Make the window's context current */
 		glfwMakeContextCurrent(m_window);
 		
+		EN_CORE_INFO("initialised opengl, name: {0}, h: {1}, w:{2}", prop.Title, prop.Height, prop.Width);
+		
 		ui = new gui(m_window);
+
 	}
 
 	bool opengl::run() {
