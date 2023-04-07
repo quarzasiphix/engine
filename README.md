@@ -14,9 +14,10 @@
 
 --- 
 
+<h4> easy to work with template, custom made </h4>
+
 using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
 
-<h4> easy to work with template </h4>
 
 --- 
 
