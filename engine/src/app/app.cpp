@@ -5,8 +5,8 @@ namespace engine {
 
 	app::app() {
 		engine::log::init();
-		m_window = new window();
-		//m_window->init();
+		m_window = std::make_unique<window>();
+		m_window->init();
 	}
 	/*
 		
@@ -37,9 +37,9 @@ namespace engine {
 	}
 
 	void app::run() {
-		/*while (m_running) {
+		while (m_running) {
 			m_window->onUpdate();
-		}*/
+		}
 	}
 		/* Loop until the user closes the window 
 		while (!glfwWindowShouldClose(m_window))
