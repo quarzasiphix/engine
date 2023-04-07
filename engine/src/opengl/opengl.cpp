@@ -24,6 +24,7 @@ namespace engine {
 	void opengl::init() {
 		//EN_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Height, props.Width);
 
+
 		if (!s_GLFWInitialized) {
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
@@ -38,9 +39,9 @@ namespace engine {
 			glfwTerminate();
 		}
 
-		/* Make the window's context current */
 		glfwMakeContextCurrent(m_window);
 
+		/* attemp at setting up event system
 		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
@@ -110,20 +111,22 @@ namespace engine {
 
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
-		});
+		}); */
 
 		EN_CORE_INFO("initialised opengl, name: {0}, h: {1}, w:{2}", props.Title, props.Height, props.Width);
 
 		ui = new gui(m_window);
+		//ui->clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	}
 
-	void opengl::run() {
-		glClear(GL_COLOR_BUFFER_BIT);
+	bool opengl::run() {
+		if (!glfwWindowShouldClose(m_window)) {
+			ui->run(m_window);
+			glfwSwapBuffers(m_window);
+			glfwPollEvents();
+			return true;
+		}
 
-		ui->run(m_window);
-
-		glfwSwapBuffers(m_window);
-
-		glfwPollEvents();
+		else return false;
 	}
 }

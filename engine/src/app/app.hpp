@@ -10,8 +10,8 @@ namespace engine {
 		~app();
 		void run();
 		opengl* gl;
-		void onEvent(Event& e);
-		bool OnWindowClose(WindowCloseEvent& e);
+		//void onEvent(Event& e);
+		//bool OnWindowClose(WindowCloseEvent& e);
 	private:
 		bool m_running = true;
 	};

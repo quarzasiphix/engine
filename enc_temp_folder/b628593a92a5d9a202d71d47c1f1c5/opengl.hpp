@@ -25,20 +25,16 @@ namespace engine {
 
 		gui* ui;
 		windowProps props;
+		//using EventCallbackFn = std::function<void(Event&)>;
+		//inline void setEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
 	private:
 		GLFWwindow* m_window;
 		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;
 			bool VSync;
+			//EventCallbackFn EventCallback;
 		};
 		WindowData m_data;
 	};
 }
-
-
-
-//using EventCallbackFn = std::function<void(Event&)>;
-		//inline void setEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
-
-//EventCallbackFn EventCallback;

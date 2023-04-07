@@ -43,22 +43,38 @@ namespace engine {
         return true;
 	}
     
+    void ui(gui& g) {
+        ImGui::NewFrame();
+
+        ImGui::Begin("yoo");
+
+        ImGui::ColorEdit3("clear color", (float*)&g.clear_color);
+        ImGui::Text("sup");
+
+        ImGui::End();
+
+        ImGui::Render();
+    }
+
     void gui::run(GLFWwindow* m_window) {
         // Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         
-        
         ImGui::NewFrame();
 
         ImGui::Begin("yoo");
+
+        ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
         ImGui::Text("sup");
 
         ImGui::End();
+
         ImGui::Render();
 
-
         glfwGetFramebufferSize(m_window, &this->display_w, &this->display_h);
+        glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
+        glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
         glViewport(0, 0, this->display_w, this->display_h);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         ImGuiIO& io = ImGui::GetIO(); (void)io;
