@@ -2,7 +2,7 @@
 <p> sandbox compiles into exe, includes engine dll </p>
 <p> imgui and glfw get compiled into lib, which engine includes </p>
 
- ```  compiles into $(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\ ```
+ compiles into ``` $(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\ ```
 
 <h4> C++ std 20 vs 2022 </h4>
 
