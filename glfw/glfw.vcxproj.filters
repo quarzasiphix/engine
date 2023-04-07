@@ -72,10 +72,10 @@
     <ClInclude Include="src\xkb_unicode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GLFW\glfw3.h">
+    <ClInclude Include="includes\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GLFW\glfw3native.h">
+    <ClInclude Include="includes\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
