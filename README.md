@@ -16,7 +16,7 @@
 
 <h3> easy to work with project template </h3>
 
-using <a href="https://github.com/quarzasiphix/template" style="display:inline;">this template</a>.
+# using <a href="https://github.com/quarzasiphix/template" style="display:inline;">this template</a>.
 
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
 
