@@ -15,6 +15,7 @@
 --- 
 
 <h3> easy to work with project template </h3>
+
 <span style="display:inline;">
     <p style="display:inline;"> using this template: </p>
     <a href="https://github.com/quarzasiphix/template" style="display:inline;">template</a>
