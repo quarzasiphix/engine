@@ -17,7 +17,7 @@
 
 using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
 
-# easy to work with project template 
+# easy template
 
 
 <u></u>
