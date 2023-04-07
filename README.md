@@ -8,18 +8,19 @@
 
 --- 
 
+<h4> easy to work with template, custom made </h4>
+
+using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
+
+--- 
+
 <p> basic c++ engine, with abstractions for logging, opengl and imgui </p>
 
 ![example](https://github.com/quarzasiphix/screenshots/blob/main/engine-example.png)
 
 --- 
 
-<h4> easy to work with template, custom made </h4>
-
-using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
-
-
---- 
+# easy to work with abstractions
 
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
 
