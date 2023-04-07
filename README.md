@@ -14,14 +14,11 @@
 
 --- 
 
-
 using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
 
-### easy template
+<h4> easy to work with template </h4>
 
-
-<u></u>
-
+--- 
 
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
 
