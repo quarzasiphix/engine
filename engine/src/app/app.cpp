@@ -3,7 +3,7 @@
 namespace engine {
 	app::app() {
 		engine::log::init();
-		gl = new opengl(windowProps("yoo", 300, 200));
+		gl = new opengl(windowProps("yoo", 300, 500));
 	}
 
 	app::~app() {

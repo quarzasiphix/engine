@@ -4,7 +4,7 @@ namespace engine {
 
 	opengl::opengl(const windowProps prop) {
 		this->props = prop;
-		EN_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Height, props.Width);
+		EN_CORE_INFO("Creating window {0} ({1}, {2})", prop.Title, prop.Height, prop.Width);
 
 		if (!s_GLFWInitialized) {
 			// TODO: glfwTerminate on system shutdown
@@ -14,7 +14,7 @@ namespace engine {
 			s_GLFWInitialized = true;
 		}
 
-		m_window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+		m_window = glfwCreateWindow(prop.Height, prop.Width, prop.Title.c_str(), NULL, NULL);
 
 		if (!m_window) {
 			glfwTerminate();
