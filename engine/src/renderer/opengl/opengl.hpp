@@ -15,22 +15,25 @@ namespace engine {
 	};
 
 	class ENGINE_API gui;
+	class ENGINE_API Event;
 	class ENGINE_API opengl {
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
 		opengl(const windowProps prop);
 		opengl();
 		~opengl();
 		void init();
 		bool run();
-
 		gui* ui;
 		windowProps props;
+		inline void SetEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
 	private:
 		GLFWwindow* m_window;
 		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;
-			bool VSync;
+			bool vsync;
+			EventCallbackFn EventCallback;
 		};
 		WindowData m_data;
 	};

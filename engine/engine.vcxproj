@@ -62,7 +62,10 @@
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\events\events.hpp" />
+    <ClInclude Include="src\renderer\events\appEvents.hpp" />
+    <ClInclude Include="src\renderer\events\events.hpp" />
+    <ClInclude Include="src\renderer\events\keyEvents.hpp" />
+    <ClInclude Include="src\renderer\events\mouseEvents.hpp" />
     <ClInclude Include="src\renderer\gui\gui.hpp" />
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />

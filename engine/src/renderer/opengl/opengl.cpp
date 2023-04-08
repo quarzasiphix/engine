@@ -40,8 +40,9 @@ namespace engine {
 		}
 
 		glfwMakeContextCurrent(m_window);
+		glfwSetWindowUserPointer(m_window, &m_data);
 
-		/* attemp at setting up event system
+		// attemp at setting up event system
 		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
@@ -111,7 +112,7 @@ namespace engine {
 
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
-		}); */
+		}); 
 
 		EN_CORE_INFO("initialised opengl, name: {0}, h: {1}, w:{2}", props.Title, props.Height, props.Width);
 

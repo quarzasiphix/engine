@@ -61,6 +61,9 @@
     <ProjectReference Include="..\engine\engine.vcxproj">
       <Project>{bdaab12e-56e2-4d25-a04a-269170ea339c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\imgui\imgui.vcxproj">
+      <Project>{d3531510-74a8-4540-8ea5-71b216bb8248}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

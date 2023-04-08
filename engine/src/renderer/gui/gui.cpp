@@ -42,16 +42,16 @@ namespace engine {
 
         return true;
 	}
-    
-    void ui(gui& g) {
-        ImGui::NewFrame();
 
+    void gui::addui(void(*ui)(gui& g)) {
+        onRender = ui;
+    }
+
+    void gui::ui() {
         ImGui::Begin("yoo");
-        ImGui::ColorEdit3("clear color", (float*)&g.clear_color);
+        ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
         ImGui::Text("sup");
         ImGui::End();
-
-        ImGui::Render();
     }
 
     void gui::run(GLFWwindow* m_window) {
@@ -59,7 +59,13 @@ namespace engine {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         
-        ui(*this);
+        ImGui::NewFrame();
+
+        ui();
+
+        //onRender(*this);
+
+        ImGui::Render();
 
         glfwGetFramebufferSize(m_window, &this->display_w, &this->display_h);
         glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
