@@ -22,7 +22,7 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 # easy to work with abstractions
 
-![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
+![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj-new.png)
 
 --- 
 
