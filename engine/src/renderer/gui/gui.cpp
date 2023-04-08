@@ -5,6 +5,12 @@ namespace engine {
 		init(m_window);
 	}
 
+    gui::~gui() {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
+
 	bool gui::init(GLFWwindow* m_window) {
         // Setup Dear ImGui context
         // Setup Dear ImGui context
@@ -43,6 +49,7 @@ namespace engine {
         return true;
 	}
 
+    // old test at adding a gui from sandbox
     void gui::addui(void(*ui)(gui& g)) {
         onRender = ui;
     }

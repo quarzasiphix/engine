@@ -23,7 +23,7 @@ namespace engine {
 		opengl();
 		~opengl();
 		void init();
-		bool run();
+		void run();
 		gui* ui;
 		windowProps props;
 		inline void SetEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }

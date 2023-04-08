@@ -1,9 +1,9 @@
 #pragma once
 
-#include <renderer/events/events.hpp>
-#include <renderer/events/appEvents.hpp>
-#include <renderer/events/keyEvents.hpp>
-#include <renderer/events/mouseEvents.hpp>
+#include "events/events.hpp"
+#include "events/appEvents.hpp"
+#include "events/keyEvents.hpp"
 
-#include <renderer/opengl/opengl.hpp>
-#include <renderer/gui/gui.hpp>
+#include "events/mouseEvents.hpp"
+#include "opengl/opengl.hpp"
+#include "gui/gui.hpp"

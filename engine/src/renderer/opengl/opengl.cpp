@@ -18,13 +18,12 @@ namespace engine {
 	}
 
 	opengl::~opengl() {
+		delete ui;
+		glfwDestroyWindow(m_window);
 		glfwTerminate();
 	}
 	
 	void opengl::init() {
-		//EN_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Height, props.Width);
-
-
 		if (!s_GLFWInitialized) {
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
@@ -117,17 +116,11 @@ namespace engine {
 		EN_CORE_INFO("initialised opengl, name: {0}, h: {1}, w:{2}", props.Title, props.Height, props.Width);
 
 		ui = new gui(m_window);
-		//ui->clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	}
 
-	bool opengl::run() {
-		if (!glfwWindowShouldClose(m_window)) {
-			ui->run(m_window);
-			glfwSwapBuffers(m_window);
-			glfwPollEvents();
-			return true;
-		}
-
-		else return false;
+	void opengl::run() {
+		glfwPollEvents();
+		ui->run(m_window);
+		glfwSwapBuffers(m_window);
 	}
 }

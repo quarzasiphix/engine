@@ -1,6 +1,4 @@
-#include <enpch.hpp>
 #include "log.hpp"
-
 
 namespace engine {
 	std::shared_ptr<spdlog::logger> log::s_corelogger;

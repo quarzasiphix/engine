@@ -13,16 +13,14 @@ namespace engine {
 	}
 
 	void app::run() {
-		while (m_running) {
-			if(!gl->run()) m_running = false;
-		}
+		while (m_running) gl->run();
 	}
 
 	void app::onEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		EN_CORE_TRACE("{0}", e);
+		EN_TRACE("{0}", e);
 	}
 
 	bool app::OnWindowClose(WindowCloseEvent& e) {

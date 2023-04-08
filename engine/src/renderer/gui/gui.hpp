@@ -6,6 +6,7 @@ namespace engine {
 	public:
 		friend opengl;
 		gui(GLFWwindow* m_window);
+		~gui();
 		void(*onRender)(gui& g);
 		void addui(void(*ui)(gui& g));
 		void ui();
