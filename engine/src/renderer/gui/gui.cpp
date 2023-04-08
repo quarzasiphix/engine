@@ -49,11 +49,6 @@ namespace engine {
         return true;
 	}
 
-    // old test at adding a gui from sandbox
-    void gui::addui(void(*ui)(gui& g)) {
-        onRender = ui;
-    }
-
     void gui::ui() {
         ImGui::Begin("yoo");
         ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
@@ -65,15 +60,9 @@ namespace engine {
         // Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
-        
         ImGui::NewFrame();
-
         ui();
-
-        //onRender(*this);
-
         ImGui::Render();
-
         glfwGetFramebufferSize(m_window, &this->display_w, &this->display_h);
         glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
@@ -88,3 +77,7 @@ namespace engine {
         }
     }
 }
+/* // old test at adding a gui from sandbox
+    void gui::addui(void(*ui)(gui& g)) {
+        onRender = ui;
+    }*/

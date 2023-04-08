@@ -4,8 +4,15 @@ namespace engine {
 
 	app::app() {
 		engine::log::init();
-		gl = new opengl(windowProps("yoo", 500, 700));
-		gl->SetEventCallback(BIND_EVENT_FN(onEvent));
+		gl = new opengl(
+			windowProps(
+				"yoo", 
+				500, 700
+			)
+		);
+		gl->SetEventCallback(
+			BIND_EVENT_FN(onEvent)
+		);
 	}
 
 	app::~app() {
@@ -28,17 +35,6 @@ namespace engine {
 		return true;
 	}
 	
-	/*void app::onEvent(Event& e) {
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-
-		EN_CORE_TRACE("{0}", e);
-	}
-
-	bool app::OnWindowClose(WindowCloseEvent& e) {
-		m_running = false;
-		return true;
-	}*/
 }
 
 /* Loop until the user closes the window 
