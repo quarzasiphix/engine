@@ -8,7 +8,7 @@
 
 --- 
 
-<h4> easy to work with template, custom made </h4>
+<h4> easy to work with vs project template, self made </h4>
 
 using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
 
