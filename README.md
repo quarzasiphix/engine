@@ -14,7 +14,7 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 --- 
 
-<h3> basic c++ engine, with abstractions for logging, opengl and imgui </h3>
+<h3> basic c++ engine, with abstractions for events, logging, opengl and imgui </h3>
 
 ![example](https://github.com/quarzasiphix/screenshots/blob/main/engine-example-new.png)
 
@@ -24,3 +24,8 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 ![project](https://github.com/quarzasiphix/screenshots/blob/main/engine-proj.png)
 
+--- 
+
+# fully implemented event system
+
+![events](https://github.com/quarzasiphix/screenshots/blob/main/engine-events-gif.gif)
