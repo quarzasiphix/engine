@@ -2,13 +2,13 @@
 <p>sandbox compiles into exe, includes engine dll</p>
 <p>imgui and glfw get compiled into lib, which links with engine</p>
 
- compiles into ``` $(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\ ```
+ compiles into ```$(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\```
 
 <h4> C++ std 20 vs 2022 </h4>
 
 --- 
 
-<h4> easy to work with template, custom made </h4>
+<h4> easy to work with vs project template, self made </h4>
 
 using <a href="https://github.com/quarzasiphix/template" style="display:inline; border-bottom: none;">this template</a>.
 
