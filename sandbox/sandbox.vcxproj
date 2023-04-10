@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)imgui/src;$(SolutionDir)glfw/includes;$(SolutionDir)glad/includes/;$(SolutionDir)engine/includes;$(SolutionDir)engine/src;$(SolutionDir);$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/imgui/src;$(SolutionDir)dependencies/glfw/includes;$(SolutionDir)dependencies/glad/includes/;$(SolutionDir)engine/includes;$(SolutionDir)engine/src;$(SolutionDir);$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>enpch.hpp</PrecompiledHeaderFile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -60,9 +60,6 @@
   <ItemGroup>
     <ProjectReference Include="..\engine\engine.vcxproj">
       <Project>{bdaab12e-56e2-4d25-a04a-269170ea339c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\imgui\imgui.vcxproj">
-      <Project>{d3531510-74a8-4540-8ea5-71b216bb8248}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
