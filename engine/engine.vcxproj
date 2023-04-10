@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)imgui/src;$(SolutionDir)glfw/includes;$(ProjectDir)includes;$(ProjectDir)src;$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)imgui/src;$(SolutionDir)glfw/includes;$(SolutionDir)glad/includes/;$(ProjectDir)includes;$(ProjectDir)src;$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>enpch.hpp</PrecompiledHeaderFile>
     </ClCompile>
@@ -83,6 +83,9 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\glad\glad.vcxproj">
+      <Project>{68349c45-a697-4267-8b55-c2e36aa6f5cb}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\glfw\glfw.vcxproj">
       <Project>{77faaae7-4d51-4b59-9294-4181a3630652}</Project>
     </ProjectReference>

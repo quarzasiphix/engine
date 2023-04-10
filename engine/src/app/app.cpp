@@ -4,12 +4,7 @@ namespace engine {
 
 	app::app() {
 		engine::log::init();
-		gl = new opengl(
-			windowProps(
-				"yoo", 
-				500, 700
-			)
-		);
+		gl = new opengl(windowProps("yoo", 500, 700));
 		gl->SetEventCallback(
 			BIND_EVENT_FN(onEvent)
 		);
@@ -27,7 +22,7 @@ namespace engine {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		EN_TRACE("{0}", e);
+		EN_TRACE("event {0}", e);
 	}
 
 	bool app::OnWindowClose(WindowCloseEvent& e) {

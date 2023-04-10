@@ -57,7 +57,7 @@ namespace engine {
     }
 
     void gui::run(GLFWwindow* m_window) {
-        // Start ImGui frame
+        //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();

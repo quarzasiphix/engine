@@ -33,12 +33,9 @@ namespace engine {
 		}
 
 		m_window = glfwCreateWindow(props.Height, props.Width, props.Title.c_str(), NULL, NULL);
-
-		if (!m_window) {
-			glfwTerminate();
-		}
-
+		if (!m_window) glfwTerminate();
 		glfwMakeContextCurrent(m_window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetWindowUserPointer(m_window, &m_data);
 
 		// attemp at setting up event system
