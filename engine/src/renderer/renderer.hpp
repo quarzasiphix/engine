@@ -1,13 +1,13 @@
 #pragma once
 
-#include "events/events.hpp"
-#include "events/appEvents.hpp"
-#include "events/keyEvents.hpp"
-#include "events/mouseEvents.hpp"
+#include "events/Events.hpp"
+#include "events/AppEvents.hpp"
+#include "events/KeyEvents.hpp"
+#include "events/MouseEvents.hpp"
 
 #include "opengl/opengl.hpp"
 #include "gui/gui.hpp"
 
-#include "layer/layer.hpp"
-#include "layer/stack/layerStack.hpp"
+#include "layer/Layer.hpp"
+#include "layer/stack/LayerStack.hpp"
 

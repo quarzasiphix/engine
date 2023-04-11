@@ -1,12 +1,11 @@
 #include "layer.hpp"
 
 namespace engine {
-	layer::layer(const std::string& name)
-		: m_debugName(name) {
+	Layer::Layer(const std::string& debugName)
+		: m_DebugName(debugName)
+	{}
 
-	}
+	Layer::~Layer() {
 
-	layer::~layer() {
-	
 	}
 }

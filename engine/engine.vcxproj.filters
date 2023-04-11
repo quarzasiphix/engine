@@ -27,10 +27,10 @@
     <ClCompile Include="src\renderer\gui\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\layer\layer.cpp">
+    <ClCompile Include="src\renderer\layer\Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\layer\stack\layerStack.cpp">
+    <ClCompile Include="src\renderer\layer\stack\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,25 +68,25 @@
     <ClInclude Include="src\renderer\gui\gui.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\events\events.hpp">
+    <ClInclude Include="src\renderer\events\Events.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\events\appEvents.hpp">
+    <ClInclude Include="src\renderer\events\AppEvents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\events\keyEvents.hpp">
+    <ClInclude Include="src\renderer\events\KeyEvents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\events\mouseEvents.hpp">
+    <ClInclude Include="src\renderer\events\MouseEvents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\layer\layer.hpp">
+    <ClInclude Include="src\renderer\layer\Layer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\layer\stack\layerStack.hpp">
+    <ClInclude Include="src\renderer\layer\stack\LayerStack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

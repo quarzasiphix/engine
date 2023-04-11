@@ -1,7 +1,7 @@
 // includes entry point
 #include <engine.h>
 
-class exampleLayer : public engine::layer {
+class exampleLayer : public engine::Layer {
 public:
 	exampleLayer()
 		: layer("Example")

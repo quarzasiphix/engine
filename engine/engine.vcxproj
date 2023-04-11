@@ -56,20 +56,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\renderer\layer\stack\layerStack.cpp" />
-    <ClCompile Include="src\renderer\layer\layer.cpp" />
+    <ClCompile Include="src\renderer\layer\stack\LayerStack.cpp" />
+    <ClCompile Include="src\renderer\layer\Layer.cpp" />
     <ClCompile Include="src\renderer\gui\gui.cpp" />
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\layer\stack\layerStack.hpp" />
-    <ClInclude Include="src\renderer\layer\layer.hpp" />
-    <ClInclude Include="src\renderer\events\appEvents.hpp" />
-    <ClInclude Include="src\renderer\events\events.hpp" />
-    <ClInclude Include="src\renderer\events\keyEvents.hpp" />
-    <ClInclude Include="src\renderer\events\mouseEvents.hpp" />
+    <ClInclude Include="src\renderer\layer\stack\LayerStack.hpp" />
+    <ClInclude Include="src\renderer\layer\Layer.hpp" />
+    <ClInclude Include="src\renderer\events\AppEvents.hpp" />
+    <ClInclude Include="src\renderer\events\Events.hpp" />
+    <ClInclude Include="src\renderer\events\KeyEvents.hpp" />
+    <ClInclude Include="src\renderer\events\MouseEvents.hpp" />
     <ClInclude Include="src\renderer\gui\gui.hpp" />
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />

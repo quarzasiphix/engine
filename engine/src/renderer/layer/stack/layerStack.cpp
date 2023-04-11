@@ -1,40 +1,42 @@
 #include "layerStack.hpp"
 
 namespace engine {
-	layerStack::layerStack() {
-		m_layerInsert = m_layers.begin();
+	LayerStack::LayerStack()
+	{
+		m_LayerInsert = m_Layers.begin();
 	}
 
-	layerStack::~layerStack() {
-		for (layer* layer : m_layers)
+	LayerStack::~LayerStack()
+	{
+		for (Layer* layer : m_Layers)
 			delete layer;
 	}
 
-	void layerStack::PushLayer(layer* layer) {
-		m_layerInsert = m_layers.emplace(m_layerInsert, layer);
-		layer->OnAttach();
+	void LayerStack::PushLayer(Layer* layer)
+	{
+		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
 	}
 
-	void layerStack::PushOverlay(layer* overlay) {
-		m_layers.emplace_back(overlay);
-		overlay->OnAttach();
+	void LayerStack::PushOverlay(Layer* overlay)
+	{
+		m_Layers.emplace_back(overlay);
 	}
 
-	void layerStack::PopLayer(layer* layer) {
-		auto it = std::find(m_layers.begin(), m_layers.end(), layer);
-		if (it != m_layers.end()) {
-			m_layers.erase(it);
-			m_layerInsert--;
-			layer->OnDetach();
+	void LayerStack::PopLayer(Layer* layer)
+	{
+		auto it = std::find(m_Layers.begin(), m_Layers.end(), layer);
+		if (it != m_Layers.end())
+		{
+			m_Layers.erase(it);
+			m_LayerInsert--;
 		}
 	}
 
-	void layerStack::PopOverlay(layer* overlay) {
-		auto it = std::find(m_layers.begin(), m_layers.end(), overlay);
-		if (it != m_layers.end()) {
-			m_layers.erase(it);
-			overlay->OnDetach();
-		}
+	void LayerStack::PopOverlay(Layer* overlay)
+	{
+		auto it = std::find(m_Layers.begin(), m_Layers.end(), overlay);
+		if (it != m_Layers.end())
+			m_Layers.erase(it);
 	}
 
 }

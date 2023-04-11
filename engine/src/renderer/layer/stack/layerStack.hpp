@@ -2,21 +2,22 @@
 #include <common.hpp>
 
 namespace engine {
-	class ENGINE_API layerStack {
+	class ENGINE_API LayerStack {
 	public:
-		layerStack();
-		~layerStack();
+		LayerStack();
+		~LayerStack();
 
-		void PushLayer(layer* layer);
-		void PushOverlay(layer* overlay);
-		void PopLayer(layer* layer);
-		void PopOverlay(layer* overlay);
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
+		void PopLayer(Layer* layer);
+		void PopOverlay(Layer* overlay);
 
-		std::vector<layer*>::iterator begin() { return m_layers.begin(); }
-		std::vector<layer*>::iterator end() { return m_layers.end(); }
-	private:		
-		std::vector<layer*> m_layers;
-		std::vector<layer*>::iterator m_layerInsert;
+		std::vector<Layer*>::iterator begin() { return m_Layers.begin(); }
+		std::vector<Layer*>::iterator end() { return m_Layers.end(); }
+	private:
+		std::vector<Layer*> m_Layers;
+		std::vector<Layer*>::iterator m_LayerInsert;
 	};
+
 }
 
