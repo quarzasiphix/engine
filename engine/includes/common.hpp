@@ -4,10 +4,10 @@
 
 // ---- ---- ---- ---- ---- 
 
+#include <renderer/renderer.hpp>
+
 #include <app/app.hpp>
 #include <log/log.hpp>
-
-#include <renderer/renderer.hpp>
 
 
 // ---- ---- ---- ---- ---- 

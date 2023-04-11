@@ -5,9 +5,7 @@ namespace engine {
 	app::app() {
 		engine::log::init();
 		gl = new opengl(windowProps("yoo", 500, 700));
-		gl->SetEventCallback(
-			BIND_EVENT_FN(onEvent)
-		);
+		gl->SetEventCallback(BIND_EVENT_FN(onEvent));
 	}
 
 	app::~app() {
@@ -15,14 +13,30 @@ namespace engine {
 	}
 
 	void app::run() {
-		while (m_running) gl->run();
+		while (m_running) {
+			for (layer* layer : m_layerStack) layer->OnUpdate();
+			gl->run();
+		}
+	}
+
+	void app::PushLayer(layer* layer) {
+		m_layerStack.PopOverlay(layer);
+	}
+
+	void app::PushOverlay(layer* layer) {
+		m_layerStack.PushOverlay(layer);
 	}
 
 	void app::onEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		EN_TRACE("event {0}", e);
+		//EN_TRACE("event {0}", e);
+
+		for (auto it = m_layerStack.end(); it != m_layerStack.begin();) {
+			(*--it)->OnEvent(e); 
+			if (e.Handled) break;
+		}
 	}
 
 	bool app::OnWindowClose(WindowCloseEvent& e) {
