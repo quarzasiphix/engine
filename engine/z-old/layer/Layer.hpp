@@ -1,5 +1,5 @@
 #pragma once
-#include "stack/LayerStack.hpp"
+#include <common.hpp>
 
 namespace engine {
 	class ENGINE_API LayerStack;
@@ -12,7 +12,7 @@ namespace engine {
 		virtual void OnDetach() {}
 		virtual void OnUpdate() {}
 		virtual void OnEvent(Event& event) {}
-
+		  
 		inline const std::string& GetName() const { return m_DebugName; }
 	protected:
 		std::string m_DebugName;

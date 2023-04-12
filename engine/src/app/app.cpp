@@ -1,7 +1,6 @@
 #include "app.hpp"
 
 namespace engine {
-
 	app::app() {
 		engine::log::init();
 		gl = new opengl(windowProps("yoo", 500, 700));
@@ -39,6 +38,7 @@ namespace engine {
 	}
 }
 /*
+
 	void app::PushLayer(Layer* layer) {
 		m_LayerStack.PopOverlay(layer);
 	}
@@ -46,9 +46,6 @@ namespace engine {
 	void app::PushOverlay(Layer* layer) {
 		m_LayerStack.PushOverlay(layer);
 	}
-
-
-	
 }
 
 /* Loop until the user closes the window 

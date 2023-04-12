@@ -3,10 +3,7 @@
 
 namespace engine {
 #define BIND_EVENT_FN(x) std::bind(&app::x, this, std::placeholders::_1)
-	//class ENGINE_API Layer;
-	class ENGINE_API Event;
-	class ENGINE_API opengl;
-	class ENGINE_API WindowCloseEvent;
+	DEFINE_ENGINE_API;
 	class ENGINE_API app {
 	public:
 		app();

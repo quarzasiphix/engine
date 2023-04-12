@@ -1,6 +1,5 @@
 // includes entry point
 #include <engine.h>
-
 /*
 class ExampleLayer : public engine::Layer {
 public:

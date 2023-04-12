@@ -1,4 +1,4 @@
-#include "LayerStack.hpp"
+#include "layerStack.hpp"
 
 namespace engine {
 	LayerStack::LayerStack()
@@ -38,4 +38,5 @@ namespace engine {
 		if (it != m_Layers.end())
 			m_Layers.erase(it);
 	}
+
 }

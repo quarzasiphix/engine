@@ -14,8 +14,6 @@ namespace engine {
 		{}
 	};
 
-	class ENGINE_API gui;
-	class ENGINE_API Event;
 	class ENGINE_API opengl {
 	public:
 		friend gui;

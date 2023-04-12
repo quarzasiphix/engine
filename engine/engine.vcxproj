@@ -62,12 +62,12 @@
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\layer\stack\LayerStack.hpp" />
-    <ClInclude Include="src\renderer\layer\Layer.hpp" />
-    <ClInclude Include="src\renderer\events\AppEvents.hpp" />
-    <ClInclude Include="src\renderer\events\Events.hpp" />
-    <ClInclude Include="src\renderer\events\KeyEvents.hpp" />
-    <ClInclude Include="src\renderer\events\MouseEvents.hpp" />
+    <ClInclude Include="src\renderer\Layer\stack\LayerStack.hpp" />
+    <ClInclude Include="src\renderer\Layer\Layer.hpp" />
+    <ClInclude Include="src\renderer\Events\AppEvents.hpp" />
+    <ClInclude Include="src\renderer\Events\Events.hpp" />
+    <ClInclude Include="src\renderer\Events\KeyEvents.hpp" />
+    <ClInclude Include="src\renderer\Events\MouseEvents.hpp" />
     <ClInclude Include="src\renderer\gui\gui.hpp" />
     <ClInclude Include="includes\enpch.hpp" />
     <ClInclude Include="includes\common.hpp" />
