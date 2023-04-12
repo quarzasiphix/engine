@@ -56,8 +56,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\renderer\layer\stack\LayerStack.cpp" />
-    <ClCompile Include="src\renderer\layer\Layer.cpp" />
     <ClCompile Include="src\renderer\gui\gui.cpp" />
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />

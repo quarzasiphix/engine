@@ -1,10 +1,11 @@
 // includes entry point
 #include <engine.h>
 
-class exampleLayer : public engine::Layer {
+/*
+class ExampleLayer : public engine::Layer {
 public:
-	exampleLayer()
-		: layer("Example")
+	ExampleLayer()
+		: Layer("Example")
 	{}
 
 	void OnUpdate() override {
@@ -15,7 +16,7 @@ public:
 		EN_TRACE("{0}", event);
 	}
 
-};
+};*/
 
 class sandbox : public engine::app {
 public:
@@ -23,7 +24,7 @@ public:
 		EN_CORE_WARN("intialised log!!");
 		EN_INFO("hellooo");
 
-		PushLayer(new exampleLayer());
+		//PushLayer(new ExampleLayer());
 	}
 
 	~sandbox() {

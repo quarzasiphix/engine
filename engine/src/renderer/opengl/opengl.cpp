@@ -1,7 +1,5 @@
 #include "opengl.hpp"
 namespace engine {
-	static bool s_GLFWInitialized = false;
-
 	opengl::opengl(const windowProps prop) {
 		this->props = prop;
 		m_data.Title = props.Title;
@@ -24,18 +22,21 @@ namespace engine {
 	}
 	
 	void opengl::init() {
-		if (!s_GLFWInitialized) {
+		if (!s.GLFWInitialized) {
 			// TODO: glfwTerminate on system shutdown
-			int success = glfwInit();
-			EN_CORE_ASSERT(success, "Could not intialize GLFW!");
-
-			s_GLFWInitialized = true;
+			s.success = glfwInit();
+			
+			s.GLFWInitialized = true;
 		}
 
 		m_window = glfwCreateWindow(props.Height, props.Width, props.Title.c_str(), NULL, NULL);
-		if (!m_window) glfwTerminate();
+		if (!m_window) {
+			s.success = false;
+			s.GLFWInitialized = false;
+			glfwTerminate();
+		}
 		glfwMakeContextCurrent(m_window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		s.status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetWindowUserPointer(m_window, &m_data);
 
 		// attemp at setting up event system

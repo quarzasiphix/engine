@@ -8,6 +8,6 @@
 #include "opengl/opengl.hpp"
 #include "gui/gui.hpp"
 
-#include "layer/Layer.hpp"
-#include "layer/stack/LayerStack.hpp"
+//#include "layer/Layer.hpp"
+//#include "layer/stack/LayerStack.hpp"
 

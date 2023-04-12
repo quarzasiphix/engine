@@ -5,6 +5,7 @@ namespace engine {
 	app::app() {
 		engine::log::init();
 		gl = new opengl(windowProps("yoo", 500, 700));
+		//if(!gl->s.success)
 		gl->SetEventCallback(BIND_EVENT_FN(onEvent));
 	}
 
@@ -14,17 +15,15 @@ namespace engine {
 
 	void app::run() {
 		while (m_running) {
-			for (layer* layer : m_layerStack) layer->OnUpdate();
+			//for (Layer* layer : m_layerStack) layer->OnUpdate();
 			gl->run();
+			//if(gl->s.status)
 		}
 	}
 
-	void app::PushLayer(layer* layer) {
-		m_layerStack.PopOverlay(layer);
-	}
-
-	void app::PushOverlay(layer* layer) {
-		m_layerStack.PushOverlay(layer);
+	bool app::OnWindowClose(WindowCloseEvent& e) {
+		m_running = false;
+		return true;
 	}
 
 	void app::onEvent(Event& e) {
@@ -33,16 +32,22 @@ namespace engine {
 
 		//EN_TRACE("event {0}", e);
 
-		for (auto it = m_layerStack.end(); it != m_layerStack.begin();) {
-			(*--it)->OnEvent(e); 
+		/*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
+			(*--it)->OnEvent(e);
 			if (e.Handled) break;
-		}
+		}*/
+	}
+}
+/*
+	void app::PushLayer(Layer* layer) {
+		m_LayerStack.PopOverlay(layer);
 	}
 
-	bool app::OnWindowClose(WindowCloseEvent& e) {
-		m_running = false;
-		return true;
+	void app::PushOverlay(Layer* layer) {
+		m_LayerStack.PushOverlay(layer);
 	}
+
+
 	
 }
 

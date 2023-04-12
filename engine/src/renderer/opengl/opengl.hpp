@@ -18,7 +18,13 @@ namespace engine {
 	class ENGINE_API Event;
 	class ENGINE_API opengl {
 	public:
+		friend gui;
 		using EventCallbackFn = std::function<void(Event&)>;
+		struct status {
+			bool success = true;
+			bool GLFWInitialized = false;
+			int status; 
+		}; status s;
 		opengl(const windowProps prop);
 		opengl();
 		~opengl();
@@ -34,8 +40,7 @@ namespace engine {
 			unsigned int Width, Height;
 			bool vsync;
 			EventCallbackFn EventCallback;
-		};
-		WindowData m_data;
+		}; WindowData m_data;
 	};
 }
 
