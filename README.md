@@ -1,6 +1,6 @@
 # engine, in early development
-<p>sandbox compiles into exe, includes engine dll</p>
-<p>imgui and glfw get compiled into lib, which links with engine</p>
+<p>imgui, glfw and glad get compiled into a lib, which links with engine</p>
+<p>sandbox compiles into exe, which includes engine dll</p>
 
  compiles into ```$(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\```
 
