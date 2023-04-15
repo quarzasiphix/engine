@@ -27,8 +27,9 @@ namespace engine {
 		opengl(const windowProps prop);
 		opengl();
 		~opengl();
-		void init();
-		void run();
+		void onAttach();
+		void onUpdate();
+		void onDetach();
 		gui* ui;
 		windowProps props;
 		inline void SetEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }

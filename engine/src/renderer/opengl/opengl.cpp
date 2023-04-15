@@ -5,23 +5,21 @@ namespace engine {
 		m_data.Title = props.Title;
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
-		init();
+		onAttach();
 	}
 
 	opengl::opengl() {
 		m_data.Title = props.Title;
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
-		init();
+		onAttach();
 	}
 
 	opengl::~opengl() {
-		delete ui;
-		glfwDestroyWindow(m_window);
-		glfwTerminate();
+		onDetach();
 	}
 	
-	void opengl::init() {
+	void opengl::onAttach() {
 		if (!s.GLFWInitialized) {
 			// TODO: glfwTerminate on system shutdown
 			s.success = glfwInit();
@@ -38,8 +36,6 @@ namespace engine {
 		glfwMakeContextCurrent(m_window);
 		s.status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetWindowUserPointer(m_window, &m_data);
-
-		// attemp at setting up event system
 		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
@@ -48,13 +44,11 @@ namespace engine {
 			windowResizeEvent event(width, height);
 			data.EventCallback(event);
 		});
-
 		glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			windowCloseEvent event;
 			data.EventCallback(event);
 		});
-
 		glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -76,7 +70,6 @@ namespace engine {
 				}
 			}
 		});
-
 		glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -92,14 +85,12 @@ namespace engine {
 				break;
 			}}
 		});
-
 		glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			mouseScrolledEvent event((float)xOffset, (float)yOffset);
 			data.EventCallback(event);
 		});
-
 		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -112,12 +103,24 @@ namespace engine {
 		ui = new gui(m_window);
 	}
 
-	void opengl::run() {
+	void opengl::onUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_window);
+		/*
+		glfwGetFramebufferSize(ui->m_window, &ui->display_w, &ui->display_h);
+		glClearColor(ui->clear_color.x * ui->clear_color.w, ui->clear_color.y * ui->clear_color.w, ui->clear_color.z * ui->clear_color.w, ui->clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
+		glViewport(0, 0, ui->display_w, ui->display_h);
+		*/
 
-		ui->onAttach();
 		ui->onUpdate();
+
+		glfwSwapBuffers(m_window);
+	}
+
+	void opengl::onDetach() {
 		ui->onDetach();
+		glfwDestroyWindow(m_window);
+		glfwTerminate();
+		delete ui;
 	}
 }
