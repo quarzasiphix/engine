@@ -1,9 +1,9 @@
 #include "gui.hpp"
 
 namespace engine {
-	gui::gui(GLFWwindow* m_window) {
-		init(m_window);
-	}
+    gui::gui(GLFWwindow* m_window) {
+        init(m_window);
+    }
 
     gui::~gui() {
         ImGui_ImplOpenGL3_Shutdown();
@@ -11,7 +11,8 @@ namespace engine {
         ImGui::DestroyContext();
     }
 
-	bool gui::init(GLFWwindow* m_window) {
+    bool gui::init(GLFWwindow* m_window) {
+        this->m_window = m_window;
         // Setup Dear ImGui context
         // Setup Dear ImGui context
         IMGUI_CHECKVERSION();
@@ -47,7 +48,7 @@ namespace engine {
         EN_CORE_INFO("initialised imgui");
 
         return true;
-	}
+    }
 
     void gui::ui() {
         ImGui::Begin("yoo");
@@ -56,14 +57,20 @@ namespace engine {
         ImGui::End();
     }
 
-    void gui::run(GLFWwindow* m_window) {
+    void gui::onAttach() {
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+    }
+
+    void gui::onUpdate() {
         ui();
+    }
+
+    void gui::onDetach() {
         ImGui::Render();
-        glfwGetFramebufferSize(m_window, &this->display_w, &this->display_h);
+        glfwGetFramebufferSize(this->m_window, &this->display_w, &this->display_h);
         glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
         glViewport(0, 0, this->display_w, this->display_h);

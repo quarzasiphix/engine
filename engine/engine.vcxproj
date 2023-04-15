@@ -62,8 +62,6 @@
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\Layer\stack\LayerStack.hpp" />
-    <ClInclude Include="src\renderer\Layer\Layer.hpp" />
     <ClInclude Include="src\renderer\Events\AppEvents.hpp" />
     <ClInclude Include="src\renderer\Events\Events.hpp" />
     <ClInclude Include="src\renderer\Events\KeyEvents.hpp" />

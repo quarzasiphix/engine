@@ -9,9 +9,6 @@
 #include <renderer/renderer.hpp>
 
 
-#define DEF_ENGINE_API 
-	class ENGINE_API opengl; \
-		class ENGINE_API Event; \
-		class ENGINE_API Layer; \
-		class ENGINE_API LayerStack; \
-		class ENGINE_API WindowCloseEvent
+#define DEF_ENGINE_API class ENGINE_API Event; \ 
+						class ENGINE_API opengl; \
+						class ENGINE_API WindowCloseEvent;

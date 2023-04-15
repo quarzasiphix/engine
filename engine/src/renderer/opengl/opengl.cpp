@@ -58,26 +58,22 @@ namespace engine {
 		glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			switch (action)
-			{
-			case GLFW_PRESS:
-			{
-				KeyPressedEvent event(key, 0);
-				data.EventCallback(event);
-				break;
-			}
-			case GLFW_RELEASE:
-			{
-				KeyReleasedEvent event(key);
-				data.EventCallback(event);
-				break;
-			}
-			case GLFW_REPEAT:
-			{
-				KeyPressedEvent event(key, 1);
-				data.EventCallback(event);
-				break;
-			}
+			switch (action) {
+				case GLFW_PRESS: {
+					KeyPressedEvent event(key, 0);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE: {
+					KeyReleasedEvent event(key);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT: {
+					KeyPressedEvent event(key, 1);
+					data.EventCallback(event);
+					break;
+				}
 			}
 		});
 
@@ -118,7 +114,10 @@ namespace engine {
 
 	void opengl::run() {
 		glfwPollEvents();
-		ui->run(m_window);
 		glfwSwapBuffers(m_window);
+
+		ui->onAttach();
+		ui->onUpdate();
+		ui->onDetach();
 	}
 }
