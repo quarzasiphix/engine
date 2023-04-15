@@ -2,15 +2,15 @@
 #include "events.hpp"
 
 namespace engine {
-	class ENGINE_API WindowResizeEvent : public Event {
+	class ENGINE_API windowResizeEvent : public event {
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
+		windowResizeEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height) {}
 
-		inline unsigned int GetWidth() const { return m_Width; }
-		inline unsigned int GetHeight() const { return m_Height; }
+		inline unsigned int getWidth() const { return m_Width; }
+		inline unsigned int getHeight() const { return m_Height; }
 
-		std::string ToString() const override {
+		std::string toString() const override {
 			std::stringstream ss;
 			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
 			return ss.str();
@@ -22,33 +22,33 @@ namespace engine {
 		unsigned int m_Width, m_Height;
 	};
 
-	class ENGINE_API WindowCloseEvent : public Event {
+	class ENGINE_API windowCloseEvent : public event {
 	public:
-		WindowCloseEvent() {}
+		windowCloseEvent() {}
 
 		EVENT_CLASS_TYPE(WindowClose)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppTickEvent : public Event {
+	class ENGINE_API appTickEvent : public event {
 	public:
-		AppTickEvent() {}
+		appTickEvent() {}
 
 		EVENT_CLASS_TYPE(AppTick)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppUpdateEvent : public Event {
+	class ENGINE_API appUpdateEvent : public event {
 	public:
-		AppUpdateEvent() {}
+		appUpdateEvent() {}
 
 		EVENT_CLASS_TYPE(AppUpdate)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppRenderEvent : public Event {
+	class ENGINE_API appRenderEvent : public event {
 	public:
-		AppRenderEvent() {}
+		appRenderEvent() {}
 
 		EVENT_CLASS_TYPE(AppRender)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)

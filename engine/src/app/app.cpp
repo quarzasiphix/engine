@@ -20,23 +20,21 @@ namespace engine {
 		}
 	}
 
-	bool app::OnWindowClose(WindowCloseEvent& e) {
+	bool app::onWindowClose(windowCloseEvent& e) {
 		m_running = false;
 		return true;
 	}
 
-	void app::onEvent(Event& e) {
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-
-		//EN_TRACE("event {0}", e);
-
-		/*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
+	void app::onEvent(event& e) {
+		eventDispatcher dispatcher(e);
+		dispatcher.dispatch<windowCloseEvent>(BIND_EVENT_FN(onWindowClose));
+	}
+}
+/*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
 			(*--it)->OnEvent(e);
 			if (e.Handled) break;
 		}*/
-	}
-}
+//EN_TRACE("event {0}", e);
 /*
 
 	void app::PushLayer(Layer* layer) {

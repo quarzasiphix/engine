@@ -18,7 +18,7 @@ namespace engine {
 	class ENGINE_API opengl {
 	public:
 		friend gui;
-		using EventCallbackFn = std::function<void(Event&)>;
+		using EventCallbackFn = std::function<void(event&)>;
 		struct status {
 			bool success = true;
 			bool GLFWInitialized = false;

@@ -45,13 +45,13 @@ namespace engine {
 			data.Width = width;
 			data.Height = height;
 
-			WindowResizeEvent event(width, height);
+			windowResizeEvent event(width, height);
 			data.EventCallback(event);
 		});
 
 		glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			WindowCloseEvent event;
+			windowCloseEvent event;
 			data.EventCallback(event);
 		});
 
@@ -60,17 +60,17 @@ namespace engine {
 
 			switch (action) {
 				case GLFW_PRESS: {
-					KeyPressedEvent event(key, 0);
+					keyPressedEvent event(key, 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: {
-					KeyReleasedEvent event(key);
+					keyReleasedEvent event(key);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT: {
-					KeyPressedEvent event(key, 1);
+					keyPressedEvent event(key, 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -82,12 +82,12 @@ namespace engine {
 
 			switch (action) {
 			case GLFW_PRESS: {
-				MouseButtonPressedEvent event(button);
+				mouseButtonPressedEvent event(button);
 				data.EventCallback(event);
 				break;
 			}
 			case GLFW_RELEASE: {
-				MouseButtonReleasedEvent event(button);
+				mouseButtonReleasedEvent event(button);
 				data.EventCallback(event);
 				break;
 			}}
@@ -96,14 +96,14 @@ namespace engine {
 		glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			MouseScrolledEvent event((float)xOffset, (float)yOffset);
+			mouseScrolledEvent event((float)xOffset, (float)yOffset);
 			data.EventCallback(event);
 		});
 
 		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			MouseMovedEvent event((float)xPos, (float)yPos);
+			mouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 		}); 
 
