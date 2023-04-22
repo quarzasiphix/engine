@@ -60,6 +60,7 @@
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
+    <ClCompile Include="src\renderer\gui\tasks\tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\renderer\events\appEvents.hpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
     <ClInclude Include="src\renderer\renderer.hpp" />
+    <ClInclude Include="src\renderer\gui\tasks\tasks.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

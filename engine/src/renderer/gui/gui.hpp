@@ -1,7 +1,9 @@
 #pragma once
 #include <common.hpp>
+#include "tasks/tasks.hpp"
 
 namespace engine {
+	struct ENGINE_API tasks;
 	class ENGINE_API opengl;
 	class ENGINE_API gui {
 	public:
@@ -11,12 +13,15 @@ namespace engine {
 		void onAttach();
 		void onUpdate();
 		void onDetach();
+		void UpdateImGuiScale();
 		GLFWwindow* m_window;
 		void ui();
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+		tasks* task;
 		bool initialised = false;
+		int display_w, display_h; 
+		float scale_x, scale_y;
 	private:
-		int display_w, display_h;
 		bool init(GLFWwindow* m_window);
 		//void run(GLFWwindow* m_window);
 	};

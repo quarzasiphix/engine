@@ -3,6 +3,7 @@
 namespace engine {
     gui::gui(GLFWwindow* m_window)
     : m_window(m_window) {
+        task = new tasks();
         onAttach();
     }
 
@@ -55,6 +56,13 @@ namespace engine {
         ImGui::End();
     }
 
+    void gui::UpdateImGuiScale() {
+        float xscale, yscale;
+        glfwGetWindowContentScale(m_window, &xscale, &yscale);
+        ImGui::GetIO().FontGlobalScale = xscale;
+        ImGui::GetIO().DisplayFramebufferScale = ImVec2(xscale, yscale);
+    }
+
     void gui::onUpdate() {
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -63,8 +71,13 @@ namespace engine {
 
         ui();
 
-        ImGui::Render();
+        task->list();
 
+        ImGui::ShowDemoWindow();
+
+        //UpdateImGuiScale();
+
+        ImGui::Render();
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -85,6 +98,7 @@ namespace engine {
     void gui::onDetach() {
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyPlatformWindows(); // destroy all platform windows
         ImGui::DestroyContext();
     }
 }

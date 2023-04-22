@@ -16,7 +16,6 @@ namespace engine {
 		while (m_running) {
 			//for (Layer* layer : m_layerStack) layer->OnUpdate();
 			gl->onUpdate();
-			gl->ui->onUpdate();
 			//if(gl->s.status)
 		}
 	}
