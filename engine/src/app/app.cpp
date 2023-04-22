@@ -16,12 +16,14 @@ namespace engine {
 		while (m_running) {
 			//for (Layer* layer : m_layerStack) layer->OnUpdate();
 			gl->onUpdate();
+			gl->ui->onUpdate();
 			//if(gl->s.status)
 		}
 	}
 
 	bool app::onWindowClose(windowCloseEvent& e) {
 		m_running = false;
+		gl->ui->onDetach();
 		gl->onDetach();
 		return true;
 	}

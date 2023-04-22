@@ -105,14 +105,11 @@ namespace engine {
 
 	void opengl::onUpdate() {
 		glfwPollEvents();
-		/*
+		
 		glfwGetFramebufferSize(ui->m_window, &ui->display_w, &ui->display_h);
 		glClearColor(ui->clear_color.x * ui->clear_color.w, ui->clear_color.y * ui->clear_color.w, ui->clear_color.z * ui->clear_color.w, ui->clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
 		glViewport(0, 0, ui->display_w, ui->display_h);
-		*/
-
-		ui->onUpdate();
 
 		glfwSwapBuffers(m_window);
 	}

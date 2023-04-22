@@ -65,11 +65,6 @@ namespace engine {
 
         ImGui::Render();
 
-        glfwGetFramebufferSize(this->m_window, &this->display_w, &this->display_h);
-        glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
-        glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
-        glViewport(0, 0, this->display_w, this->display_h);
-
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -79,6 +74,12 @@ namespace engine {
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(backup_current_context);
         }
+        /*
+        glfwGetFramebufferSize(this->m_window, &this->display_w, &this->display_h);
+        glClearColor(this->clear_color.x * this->clear_color.w, this->clear_color.y * this->clear_color.w, this->clear_color.z * this->clear_color.w, this->clear_color.w);
+        glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
+        glViewport(0, 0, this->display_w, this->display_h);
+        */
     }
 
     void gui::onDetach() {
