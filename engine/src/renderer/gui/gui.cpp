@@ -56,14 +56,20 @@ namespace engine {
         ImGui::End();
     }
 
-    void gui::UpdateImGuiScale() {
+    /*
+    void gui::windowResizeEvent() {
         float xscale, yscale;
         glfwGetWindowContentScale(m_window, &xscale, &yscale);
         ImGui::GetIO().FontGlobalScale = xscale;
         ImGui::GetIO().DisplayFramebufferScale = ImVec2(xscale, yscale);
     }
+    */
 
-    void gui::onUpdate() {
+    void gui::onEvent(event& e) {
+        
+    }
+        
+    void gui::onUpdate() { 
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();

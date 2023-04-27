@@ -43,10 +43,8 @@ namespace engine {
 		inline bool isInCategory(eventCategory category) {
 			return getCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
 	};
-
+		
 	class eventDispatcher {
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
@@ -58,7 +56,7 @@ namespace engine {
 		template<typename T>
 		bool dispatch(EventFn<T> func) {
 			if (m_Event.getEventType() == T::getStaticType()) {
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

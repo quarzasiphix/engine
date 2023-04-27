@@ -7,6 +7,8 @@
 
 //#include "Layer/Layer.hpp"
 
+#include "layers/layers.hpp"
+
 #include "opengl/opengl.hpp"
 #include "gui/gui.hpp"
 
