@@ -2750,7 +2750,7 @@ template <typename ErrorHandler>
 FMT_CONSTEXPR void check_int_type_spec(presentation_type type,
                                        ErrorHandler&& eh) {
   if (type > presentation_type::bin_upper && type != presentation_type::chr)
-    eh.on_error("invalid type specifier");
+    eh.on_error("invalid type   specifier");
 }
 
 // Checks char specs and returns true if the type spec is char (and not int).
