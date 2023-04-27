@@ -1,5 +1,6 @@
 #pragma once
-#include <common.hpp>
+#include <core.h>
+
 namespace engine {
 	class ENGINE_API log {
 	public:

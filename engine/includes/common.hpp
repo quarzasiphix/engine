@@ -1,6 +1,5 @@
 #pragma once
 #include <core.h>
-#include <enpch.hpp>
 
 // ---- ---- ---- ---- ---- 
 #include <log/log.hpp>

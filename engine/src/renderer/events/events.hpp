@@ -1,5 +1,5 @@
 #pragma once
-#include <common.hpp>
+#include <core.h>
 
 namespace engine {
 	// Events in Hazel are currently blocking, meaning when an event occurs it

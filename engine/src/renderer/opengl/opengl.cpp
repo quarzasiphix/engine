@@ -33,26 +33,28 @@ namespace engine {
 			s.GLFWInitialized = false;
 			glfwTerminate();
 		}
+
 		glfwMakeContextCurrent(m_window);
 		s.status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		glfwSetWindowUserPointer(m_window, &m_data);
-		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			data.Width = width;
-			data.Height = height;
+		{
+			glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				data.Width = width;
+				data.Height = height;
 
-			windowResizeEvent event(width, height);
-			data.EventCallback(event);
-		});
-		glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			windowCloseEvent event;
-			data.EventCallback(event);
-		});
-		glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				windowResizeEvent event(width, height);
+				data.EventCallback(event);
+				});
+			glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				windowCloseEvent event;
+				data.EventCallback(event);
+				});
+			glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			switch (action) {
+				switch (action) {
 				case GLFW_PRESS: {
 					keyPressedEvent event(key, 0);
 					data.EventCallback(event);
@@ -68,35 +70,37 @@ namespace engine {
 					data.EventCallback(event);
 					break;
 				}
-			}
-		});
-		glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				}
+				});
+			glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			switch (action) {
-			case GLFW_PRESS: {
-				mouseButtonPressedEvent event(button);
+				switch (action) {
+				case GLFW_PRESS: {
+					mouseButtonPressedEvent event(button);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE: {
+					mouseButtonReleasedEvent event(button);
+					data.EventCallback(event);
+					break;
+				}
+				}
+				});
+			glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				mouseScrolledEvent event((float)xOffset, (float)yOffset);
 				data.EventCallback(event);
-				break;
-			}
-			case GLFW_RELEASE: {
-				mouseButtonReleasedEvent event(button);
+				});
+			glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				mouseMovedEvent event((float)xPos, (float)yPos);
 				data.EventCallback(event);
-				break;
-			}}
-		});
-		glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
-			mouseScrolledEvent event((float)xOffset, (float)yOffset);
-			data.EventCallback(event);
-		});
-		glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
-			mouseMovedEvent event((float)xPos, (float)yPos);
-			data.EventCallback(event);
-		}); 
+				});
+		}
 
 		EN_CORE_INFO("initialised opengl, name: {0}, h: {1}, w:{2}", props.Title, props.Height, props.Width);
 

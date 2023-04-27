@@ -58,6 +58,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\renderer\gui\gui.cpp" />
+    <ClCompile Include="src\renderer\gui\tasks\tasks.cpp" />
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
     <ClInclude Include="includes\window.hpp" />
+    <ClInclude Include="src\renderer\gui\tasks\tasks.hpp" />
     <ClInclude Include="src\renderer\opengl\opengl.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />

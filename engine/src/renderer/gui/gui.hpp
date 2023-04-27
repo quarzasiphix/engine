@@ -3,8 +3,8 @@
 #include "tasks/tasks.hpp"
 
 namespace engine {
-	//struct ENGINE_API tasks;
 	//class ENGINE_API layer::layers;
+	struct ENGINE_API tasks;
 	class ENGINE_API opengl;
 	class ENGINE_API event;	
 	class ENGINE_API gui {
@@ -19,7 +19,7 @@ namespace engine {
 		GLFWwindow* m_window;
 		void ui();
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-		//tasks* task;
+		tasks* task;
 		bool initialised = false;
 		int display_w, display_h; 
 		float scale_x, scale_y;
