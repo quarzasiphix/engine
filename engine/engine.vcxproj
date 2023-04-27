@@ -94,15 +94,6 @@
     <ProjectReference Include="..\dependencies\imgui\imgui.vcxproj">
       <Project>{d3531510-74a8-4540-8ea5-71b216bb8248}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\glad\glad.vcxproj">
-      <Project>{68349c45-a697-4267-8b55-c2e36aa6f5cb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\glfw\glfw.vcxproj">
-      <Project>{77faaae7-4d51-4b59-9294-4181a3630652}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\imgui\imgui.vcxproj">
-      <Project>{d3531510-74a8-4540-8ea5-71b216bb8248}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
