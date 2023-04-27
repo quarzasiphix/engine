@@ -3,7 +3,7 @@
 namespace engine {
     gui::gui(GLFWwindow* m_window)
     : m_window(m_window) {
-        task = new tasks();
+        //task = new tasks();
         onAttach();
     }
 
@@ -45,12 +45,21 @@ namespace engine {
         ImGui_ImplGlfw_InitForOpenGL(m_window, true);
         ImGui_ImplOpenGL3_Init("#version 330 core");
 
+        initialised = true;
         EN_CORE_INFO("initialised imgui");
 
+    }
+    
+    void gui::onDetach() {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyPlatformWindows(); // destroy all platform windows
+        ImGui::DestroyContext();
     }
 
     void gui::ui() {
         ImGui::Begin("yoo");
+
         ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
         ImGui::Text("sup");
         ImGui::End();
@@ -77,7 +86,7 @@ namespace engine {
 
         ui();
 
-        task->list();
+        //task->list();
 
         ImGui::ShowDemoWindow();
 
@@ -101,12 +110,6 @@ namespace engine {
         */
     }
 
-    void gui::onDetach() {
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplGlfw_Shutdown();
-        ImGui::DestroyPlatformWindows(); // destroy all platform windows
-        ImGui::DestroyContext();
-    }
 }
 /* // old test at adding a gui from sandbox
     void gui::addui(void(*ui)(gui& g)) {

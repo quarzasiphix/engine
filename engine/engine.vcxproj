@@ -46,6 +46,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies/imgui/src;$(SolutionDir)dependencies/glfw/includes;$(SolutionDir)dependencies/glad/includes/;$(ProjectDir)includes;$(ProjectDir)src;$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>enpch.hpp</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -56,16 +57,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\renderer\layers\layers.cpp" />
     <ClCompile Include="src\renderer\gui\gui.cpp" />
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\app\app.cpp" />
-    <ClCompile Include="src\renderer\gui\tasks\tasks.cpp" />
-    <ClCompile Include="src\renderer\layers\stack\stack.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\renderer\layers\layers.hpp" />
     <ClInclude Include="src\renderer\events\appEvents.hpp" />
     <ClInclude Include="src\renderer\events\events.hpp" />
     <ClInclude Include="src\renderer\events\keyEvents.hpp" />
@@ -82,8 +79,6 @@
     <ClInclude Include="src\log\log.hpp" />
     <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
     <ClInclude Include="src\renderer\renderer.hpp" />
-    <ClInclude Include="src\renderer\gui\tasks\tasks.hpp" />
-    <ClInclude Include="src\renderer\layers\stack\stack.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

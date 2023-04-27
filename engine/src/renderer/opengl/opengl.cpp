@@ -104,6 +104,9 @@ namespace engine {
 	}
 
 	void opengl::onUpdate() {
+		if (ui->initialised == true)
+			ui->onUpdate();
+		
 		glfwPollEvents();
 		
 		glfwGetFramebufferSize(ui->m_window, &ui->display_w, &ui->display_h);
@@ -113,15 +116,12 @@ namespace engine {
 		glClearColor(ui->clear_color.x * ui->clear_color.w, ui->clear_color.y * ui->clear_color.w, ui->clear_color.z * ui->clear_color.w, ui->clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
 		
-		ui->onUpdate();
-		
 		glfwSwapBuffers(m_window);
 	}
 
 	void opengl::onDetach() {
-		//ui->onDetach();
 		delete ui;
 		glfwDestroyWindow(m_window);
 		glfwTerminate();
-	}
+	} 
 }

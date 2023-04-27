@@ -5,9 +5,7 @@
 #include "Events/KeyEvents.hpp"
 #include "Events/MouseEvents.hpp"
 
-//#include "Layer/Layer.hpp"
-
-#include "layers/layers.hpp"
+//#include "layers/layers.hpp"
 
 #include "opengl/opengl.hpp"
 #include "gui/gui.hpp"

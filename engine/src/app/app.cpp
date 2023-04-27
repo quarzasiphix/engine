@@ -15,8 +15,8 @@ namespace engine {
 	void app::run() {
 		while (m_running) {
 			//for (Layer* layer : m_layerStack) layer->OnUpdate();
-			for (layer::layers* layer : m_LayerStack)
-				layer->onUpdate();
+			//for (layer::layers* layer : m_LayerStack)
+				//layer->onUpdate();
 
 			gl->onUpdate();
 			//if(gl->s.status)
@@ -25,8 +25,6 @@ namespace engine {
 
 	bool app::onWindowClose(windowCloseEvent& e) {
 		m_running = false;
-		gl->ui->onDetach();
-		gl->onDetach();
 		return true;
 	}
 
@@ -34,12 +32,13 @@ namespace engine {
 		eventDispatcher dispatcher(e);
 		dispatcher.dispatch<windowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
+		/*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
 			(*--it)->onEvent(e);
 			if (e.Handled) break;
-		}
+		}*/
 	}
 
+	/*
 	void app::pushLayer(layer::layers* layer) {
 		m_LayerStack.popOverlay(layer);
 		layer->onAttach();
@@ -49,6 +48,7 @@ namespace engine {
 		m_LayerStack.pushOverlay(layer);
 		layer->onAttach();
 	}
+	*/
 }
 /*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
 			(*--it)->OnEvent(e);
