@@ -14,7 +14,12 @@ namespace engine {
 		void getList();
 		void fav_list();
 		void all_list();
-		void lists();
+		void lists();	
+
+		void onAttach();
+		void onUpdate();
+		void onDetach();
+
 
 		//void select();
 	};

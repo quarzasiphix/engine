@@ -70,8 +70,7 @@ namespace engine {
 	}
 
 	tasks::tasks() {
-		EN_INFO("getting list of tasks");
-		//getList();
+		onAttach();
 	}
 
 	std::wstring utf8_to_utf16(const std::string& str) {
@@ -262,17 +261,23 @@ namespace engine {
 		}
 	}
 
-	void tasks::lists() {
+	void tasks::onAttach() {
+
+	}
+
+	char inp[256] = "";
+
+	void tasks::onUpdate() {
 		ImGui::Begin("tasks");
+		ImGui::InputText("input: ", inp, sizeof(inp));
+		ImGui::Text("%s", inp);
 
 		if (get_list == false) {
 			if (ImGui::Button("get list")) getList();
 			ImGui::End();
 			return;
 		}
-		if (is_selected == true) {
-			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
-		}
+		if (is_selected == true) ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
 		else ImGui::Text("No process selected...");
 		ImGui::Text("tasks");
 		fav_list();

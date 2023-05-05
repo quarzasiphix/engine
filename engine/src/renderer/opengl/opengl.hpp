@@ -33,14 +33,14 @@ namespace engine {
 		gui* ui;
 		windowProps props;
 		inline void SetEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
-	private:
-		GLFWwindow* m_window;
 		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;
 			bool vsync;
 			EventCallbackFn EventCallback;
 		}; WindowData m_data;
+	private:
+		GLFWwindow* m_window;
 	};
 }
 

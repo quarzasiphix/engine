@@ -5,8 +5,9 @@
 namespace engine {
 	//class ENGINE_API layer::layers;
 	struct ENGINE_API tasks;
-	class ENGINE_API opengl;
 	class ENGINE_API event;	
+	class ENGINE_API windowResizeEvent;
+	class ENGINE_API opengl;
 	class ENGINE_API gui {
 	public:
 		friend opengl;
@@ -16,6 +17,7 @@ namespace engine {
 		void onUpdate();
 		void onDetach();
 		void onEvent(event& e);
+		//void onResize(windowResizeEvent& e);
 		GLFWwindow* m_window;
 		void ui();
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);

@@ -13,8 +13,7 @@ namespace engine {
 			void popLayer(layers* layer);
 			void popOverlay(layers* overlay);
 				  
-			std::vector<layers*>::iterator begin() { return m_Layers.begin(); }
-			std::vector<layers*>::iterator end() { return m_Layers.end(); }
+			std::vector<function> layers;
 		private:
 			std::vector<layers*> m_Layers;
 			std::vector<layers*>::iterator m_LayerInsert;

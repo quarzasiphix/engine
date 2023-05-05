@@ -57,14 +57,6 @@ namespace engine {
         ImGui::DestroyContext();
     }
 
-    void gui::ui() {
-        ImGui::Begin("yoo");
-
-        ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
-        ImGui::Text("sup");
-        ImGui::End();
-    }
-
     /*
     void gui::windowResizeEvent() {
         float xscale, yscale;
@@ -74,19 +66,68 @@ namespace engine {
     }
     */
 
+    /*void gui::onResize(windowResizeEvent& e) {
+
+    }*/
+
     void gui::onEvent(event& e) {
-        
+        eventDispatcher dispatcher(e);
+        //dispatcher.dispatch<windowResizeEvent>(BIND_EVENT_FN(gui::onResize));
+
+
     }
-        
+
+    void gui::ui() {
+        ImGui::Begin("yoo");
+
+        ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
+        ImGui::Text("sup");
+        ImGui::End();
+    }
+
+    void dock(gui* e) {                                                                                                                                                                         
+
+        //opengl::WindowData& data = *(opengl::WindowData*)glfwGetWindowUserPointer(e->m_window);
+        //ImGui::SetNextWindowSize(ImVec2((float)data.Width, (float)data.Height));
+
+        static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+        ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoBringToFrontOnFocus;
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            dockspace_flags |= ImGuiDockNodeFlags_PassthruCentralNode;
+            window_flags |= ImGuiWindowFlags_NoBackground;
+        }
+        ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
+        ImGui::Begin("Dockspace", nullptr, window_flags);
+        ImGui::DockSpace(ImGui::GetID("MyDockspace"), ImVec2(0.0f, 0.0f), dockspace_flags);
+
+        ImGui::End();
+
+        /*
+        // Add menu bar
+        if (ImGui::BeginMenuBar()) {
+            if (ImGui::BeginMenu("File")) {
+                ImGui::MenuItem("Save", NULL);
+                ImGui::MenuItem("Exit", NULL);
+                ImGui::EndMenu();
+            }
+            ImGui::EndMenuBar();
+        }
+        */
+
+    }
+
     void gui::onUpdate() { 
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        //dock(this);
+
         ui();
 
-        task->lists();
+        task->onUpdate();
 
         ImGui::ShowDemoWindow();
 
