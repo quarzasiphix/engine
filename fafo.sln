@@ -5,7 +5,6 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine", "engine\engine.vcxproj", "{BDAAB12E-56E2-4D25-A04A-269170EA339C}"
 	ProjectSection(ProjectDependencies) = postProject
-		{588170E3-64C2-4221-B4AB-05AA809ECA16} = {588170E3-64C2-4221-B4AB-05AA809ECA16}
 		{77FAAAE7-4D51-4B59-9294-4181A3630652} = {77FAAAE7-4D51-4B59-9294-4181A3630652}
 		{D3531510-74A8-4540-8EA5-71B216BB8248} = {D3531510-74A8-4540-8EA5-71B216BB8248}
 	EndProjectSection
@@ -25,8 +24,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw", "dependencies\glfw\g
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui", "dependencies\imgui\imgui.vcxproj", "{D3531510-74A8-4540-8EA5-71B216BB8248}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hack", "hack\hack.vcxproj", "{61FADD7A-828A-47D0-B009-FA765424C4CF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -42,8 +39,6 @@ Global
 		{77FAAAE7-4D51-4B59-9294-4181A3630652}.Release|x64.Build.0 = Release|x64
 		{D3531510-74A8-4540-8EA5-71B216BB8248}.Release|x64.ActiveCfg = Release|x64
 		{D3531510-74A8-4540-8EA5-71B216BB8248}.Release|x64.Build.0 = Release|x64
-		{61FADD7A-828A-47D0-B009-FA765424C4CF}.Release|x64.ActiveCfg = Release|x64
-		{61FADD7A-828A-47D0-B009-FA765424C4CF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +49,6 @@ Global
 		{68349C45-A697-4267-8B55-C2E36AA6F5CB} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
 		{77FAAAE7-4D51-4B59-9294-4181A3630652} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
 		{D3531510-74A8-4540-8EA5-71B216BB8248} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
-		{61FADD7A-828A-47D0-B009-FA765424C4CF} = {388C4F28-BE94-46E5-B86D-7C3860F663B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53B6D290-07B0-4269-A213-4CE02C232AA2}
