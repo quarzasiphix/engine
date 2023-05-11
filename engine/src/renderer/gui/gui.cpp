@@ -76,11 +76,17 @@ namespace engine {
 
     }
 
+    bool HAKOR = false;
+
     void gui::ui() {
         ImGui::Begin("yoo");
-
         ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
         ImGui::Text("sup");
+        if (HAKOR == false) {
+            HAKOR = true;
+            hack = new hackor();
+        }
+
         ImGui::End();
     }
 
@@ -116,6 +122,7 @@ namespace engine {
 
     }
 
+
     void gui::onUpdate() { 
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -124,6 +131,7 @@ namespace engine {
 
         //dock(this);
 
+        if (HAKOR == true) hack->onUpdate();
         ui();
 
         ImGui::ShowDemoWindow();
