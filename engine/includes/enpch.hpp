@@ -18,6 +18,10 @@
 #include <functional>
 #include <string_view>
 #include <TlHelp32.h>
+#include <tchar.h>
+#include <Psapi.h>
+#include <search.h>
+#include <iomanip>
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>

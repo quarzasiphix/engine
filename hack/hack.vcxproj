@@ -15,7 +15,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes/;$(ProjectDir)src/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/imgui/src;$(SolutionDir)dependencies/glfw/includes;$(SolutionDir)dependencies/glad/includes/;$(SolutionDir)engine/includes;$(SolutionDir)engine/src;$(SolutionDir);$(SolutionDir)vendor/spdlog/include;$(SolutionDir)hack/includes;$(SolutionDir)hack/src;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -53,10 +53,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\hack\proc\proc.cpp" />
+    <ClCompile Include="src\hack\hack.cpp" />
+    <ClCompile Include="includes\hack.h" />
+    <ClCompile Include="src\hack\tasks\tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\common.hpp" />
+    <ClInclude Include="src\hack\proc\proc.hpp" />
+    <ClInclude Include="src\hack\hack.hpp" />
+    <ClInclude Include="src\hack\tasks\tasks.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,15 @@
 #pragma once
-#include <common.hpp>
+#include <hack.h>
+#include "tasks/tasks.hpp"
 
-namespace hack {
+namespace engine {
+	namespace hack {
+		struct ENGINE_API tasks;
+		class ENGINE_API hack {
+			tasks* m_task;
 
+		public:
+			hack();
+		};
+	}
 }
-class ENGINE_API hack {
-
-};
-
