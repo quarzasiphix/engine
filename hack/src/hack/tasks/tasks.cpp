@@ -61,7 +61,8 @@ namespace engine {
 		// store information about each process in turn
 		do {
 			std::pair<std::wstring, DWORD> process(pe32.szExeFile, pe32.th32ProcessID);
-			processes.push_back(process);
+			all_procs.push_back(process);
+			m_procs.push_back(all_procs);
 		} while (Process32Next(hProcessSnap, &pe32));
 
 		CloseHandle(hProcessSnap);
@@ -154,180 +155,74 @@ namespace engine {
 	static bool adding_custom = false;
 
 	void tasks::lists(const char* name, std::vector<std::pair<std::wstring, DWORD>> procs) {
-		if (ImGui::BeginTable(name, 2, flags)) {
-			ImGui::TableNextRow();
-			ImGui::TableSetColumnIndex(0);
-			ImGui::Text("favorite processes");
-			ImGui::TableSetColumnIndex(1);
-			ImGui::Text("proc id's");
-			for (int row = 0; row < procs.size(); row++) {
-				ImGui::TableNextRow();
-				for (int column = 0; column < 2; column++) {
-					ImGui::TableSetColumnIndex(column);
-					if (column == 0) {
-						ImGui::BeginTable("name_table", 2);
-						ImGui::TableNextRow();
-						ImGui::TableSetColumnIndex(0);
-						ImGui::Text("name: %s", utf16_to_utf8(procs[row].first).c_str());
-						if(name == "fav") if (ImGui::Button("remove")) procs.erase(procs.begin() + row);
-						else {
-							if (is_adding == false) {
-								if (ImGui::Button("add")) {
-									selected = make_pair(procs[row].first, procs[row].second);
-									is_adding = true;
-								}
-								ImGui::SameLine();
-								if (is_selected == true && selected == procs[row]) {
-									if (ImGui::Button("unselect")) {
-										is_selected = false;
-										selected = std::make_pair(L"", 0);
-									}
-								}
-								else {
-									if (ImGui::Button("select")) {
-										selected = std::pair<std::wstring, DWORD>(procs[row].first, procs[row].second);
-										is_selected = true;
-										EN_INFO("selected proc {0} id: {1}", utf16_to_utf8(procs[row].first), procs[row].second);
-									}
-								}
-							}
-							else {
-								if (adding_custom == true) {
-									static char input[256];
-									ImGui::InputText("category name: ", input, sizeof(input), NULL, NULL);
-									if (ImGui::Button("add category")) {
-										std::vector<std::pair<std::wstring, DWORD>> custom;
-										custom.push_back(selected);
-										m_procs.push_back(custom);
-									}
-								}
-								if (ImGui::Button("favorite")) {
-									fav_procs.push_back(selected);
-								}
-								if (ImGui::Button("custom?")) {
-									adding_custom = true;
-								}
-							}
-						}
-							
-						ImGui::EndTable();
-					}
-					else if (column == 1) {
-						ImGui::BeginTable("id_table", 2);
-						ImGui::TableNextRow();
-						ImGui::TableSetColumnIndex(0);
-						ImGui::Text("id: ");
-						ImGui::TableSetColumnIndex(1);
-						ImGui::Text("%d", procs[row].second);
-						ImGui::EndTable();
-					}
-				}
-			}
-			ImGui::EndTable();
-		}
-	}
-
-	void tasks::fav_list() {
-		//list(*this, "favorite", true);
-
-		if (!favproc.empty()) {
-			if (ImGui::BeginTable("favtable", 2, flags)) {
+		static char search_term[256] = "";
+		if (ImGui::CollapsingHeader("tasks-list")) {
+			if (ImGui::BeginTable(name, 2, flags)) {
 				ImGui::TableNextRow();
 				ImGui::TableSetColumnIndex(0);
 				ImGui::Text("favorite processes");
 				ImGui::TableSetColumnIndex(1);
 				ImGui::Text("proc id's");
-				for (int row = 0; row < favproc.size(); row++) {
+				for (int row = 0; row < procs.size(); row++) {
 					ImGui::TableNextRow();
-					for (int column = 0; column < 2; column++) {
-						ImGui::TableSetColumnIndex(column);
-						if (column == 0) {
-							ImGui::BeginTable("name_table", 2);
-							ImGui::TableNextRow();
-							ImGui::TableSetColumnIndex(0);
-							ImGui::Text("name: %s", utf16_to_utf8(favproc[row].first).c_str());
-							if (ImGui::Button("remove")) favproc.erase(favproc.begin() + row);
-							ImGui::SameLine();
-							if (is_selected == true && selected == processes[row]) {
-								if (ImGui::Button("unselect")) {
-									is_selected = false;
-									selected = std::make_pair(L"", 0);
-								}
-							}
-							else {
-								if (ImGui::Button("select")) {
-									selected = std::pair<std::wstring, DWORD>(processes[row].first, processes[row].second);
-									is_selected = true;
-									EN_INFO("selected proc {0} id: {1}", utf16_to_utf8(processes[row].first), processes[row].second);
-								}
-							}
-							ImGui::EndTable();
-						}
-						else if (column == 1) {
-							ImGui::BeginTable("id_table", 2);
-							ImGui::TableNextRow();
-							ImGui::TableSetColumnIndex(0);
-							ImGui::Text("id: ");
-							ImGui::TableSetColumnIndex(1);
-							ImGui::Text("%d", favproc[row].second);
-							ImGui::EndTable();
-						}
-					}
-				}
-				ImGui::EndTable();
-			}
-		}
-	}
-
-	void tasks::all_list() {
-		//list(*this, "all", false);
-		static char search_term[256] = "";
-		if (ImGui::CollapsingHeader("tasks-list")) {
-			ImGui::InputText("Search", search_term, sizeof(search_term));
-			if (ImGui::BeginTable("alltable", 2, flags)) {
-				ImGui::TableNextRow();
-				ImGui::TableSetColumnIndex(0);
-				ImGui::Text("processes");
-				ImGui::TableSetColumnIndex(1);
-				ImGui::Text("proc id's");
-				for (int row = 0; row < processes.size(); row++) {
-					ImGui::TableNextRow();
-					if (strstr(utf16_to_utf8(processes[row].first).c_str(), search_term)) {
+					if (strstr(utf16_to_utf8(procs[row].first).c_str(), search_term)) {
 						for (int column = 0; column < 2; column++) {
 							ImGui::TableSetColumnIndex(column);
 							if (column == 0) {
 								ImGui::BeginTable("name_table", 2);
 								ImGui::TableNextRow();
 								ImGui::TableSetColumnIndex(0);
-								std::string proc = std::string("name: " + utf16_to_utf8(processes[row].first));
-								ImGui::Text(proc.c_str());
-								if (ImGui::Button("Add favorite")) {
-									std::pair<std::wstring, DWORD> fav(processes[row].first, processes[row].second);
-									favproc.push_back(fav);
-								}
-								ImGui::SameLine();
-								if (is_selected == true && selected == processes[row]) {
-									if (ImGui::Button("unselect")) {
-										is_selected = false;
-										selected = std::make_pair(L"", 0);
-									}
-								}
+								ImGui::Text("name: %s", utf16_to_utf8(procs[row].first).c_str());
+								if (name == "fav") if (ImGui::Button("remove")) procs.erase(procs.begin() + row);
 								else {
-									if (ImGui::Button("select")) {
-										selected = std::pair<std::wstring, DWORD>(processes[row].first, processes[row].second);
-										is_selected = true;
-										EN_INFO("selected proc {0} id: {1}", utf16_to_utf8(processes[row].first), processes[row].second);
+									if (is_adding == false) {
+										if (ImGui::Button("add")) {
+											selected = make_pair(procs[row].first, procs[row].second);
+											is_adding = true;
+										}
+										ImGui::SameLine();
+										if (is_selected == true && selected == procs[row]) {
+											if (ImGui::Button("unselect")) {
+												is_selected = false;
+												selected = std::make_pair(L"", 0);
+											}
+										}
+										else {
+											if (ImGui::Button("select")) {
+												selected = std::pair<std::wstring, DWORD>(procs[row].first, procs[row].second);
+												is_selected = true;
+												EN_INFO("selected proc {0} id: {1}", utf16_to_utf8(procs[row].first), procs[row].second);
+											}
+										}
+									}
+									else {
+										if (adding_custom == true) {
+											static char input[256];
+											ImGui::InputText("category name: ", input, sizeof(input), NULL, NULL);
+											if (ImGui::Button("add category")) {
+												std::vector<std::pair<std::wstring, DWORD>> custom;
+												custom.push_back(selected);
+												m_procs.push_back(custom);
+											}
+										}
+										if (ImGui::Button("favorite")) {
+											fav_procs.push_back(selected);
+										}
+										if (ImGui::Button("custom?")) {
+											adding_custom = true;
+										}
 									}
 								}
+
 								ImGui::EndTable();
 							}
 							else if (column == 1) {
 								ImGui::BeginTable("id_table", 2);
 								ImGui::TableNextRow();
 								ImGui::TableSetColumnIndex(0);
-								ImGui::Text("id:");
+								ImGui::Text("id: ");
 								ImGui::TableSetColumnIndex(1);
-								ImGui::Text("%d", processes[row].second);
+								ImGui::Text("%d", procs[row].second);
 								ImGui::EndTable();
 							}
 						}
@@ -336,6 +231,14 @@ namespace engine {
 				ImGui::EndTable();
 			}
 		}
+	}
+
+	void tasks::fav_list() {
+		lists("favorite", fav_procs);
+	}
+
+	void tasks::all_list() {
+		lists("all", all_procs);
 	}
 
 
