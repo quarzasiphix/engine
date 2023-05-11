@@ -3,7 +3,7 @@
 namespace engine {
     gui::gui(GLFWwindow* m_window)
     : m_window(m_window) {
-        task = new tasks();
+        //task = new tasks();
         onAttach();
     }
 
@@ -86,7 +86,7 @@ namespace engine {
 
         ui();
 
-        task->lists();
+        //task->lists();
 
         ImGui::ShowDemoWindow();
 
