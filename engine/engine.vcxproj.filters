@@ -27,9 +27,6 @@
     <ClCompile Include="src\renderer\gui\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\gui\tasks\tasks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\app.hpp">
@@ -78,9 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\events\mouseEvents.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\gui\tasks\tasks.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -150,6 +150,83 @@ namespace engine {
 	}
 	*/
 
+	static bool is_adding = false;
+	static bool adding_custom = false;
+
+	void tasks::lists(const char* name, std::vector<std::pair<std::wstring, DWORD>> procs) {
+		if (ImGui::BeginTable(name, 2, flags)) {
+			ImGui::TableNextRow();
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Text("favorite processes");
+			ImGui::TableSetColumnIndex(1);
+			ImGui::Text("proc id's");
+			for (int row = 0; row < procs.size(); row++) {
+				ImGui::TableNextRow();
+				for (int column = 0; column < 2; column++) {
+					ImGui::TableSetColumnIndex(column);
+					if (column == 0) {
+						ImGui::BeginTable("name_table", 2);
+						ImGui::TableNextRow();
+						ImGui::TableSetColumnIndex(0);
+						ImGui::Text("name: %s", utf16_to_utf8(procs[row].first).c_str());
+						if(name == "fav") if (ImGui::Button("remove")) procs.erase(procs.begin() + row);
+						else {
+							if (is_adding == false) {
+								if (ImGui::Button("add")) {
+									selected = make_pair(procs[row].first, procs[row].second);
+									is_adding = true;
+								}
+								ImGui::SameLine();
+								if (is_selected == true && selected == procs[row]) {
+									if (ImGui::Button("unselect")) {
+										is_selected = false;
+										selected = std::make_pair(L"", 0);
+									}
+								}
+								else {
+									if (ImGui::Button("select")) {
+										selected = std::pair<std::wstring, DWORD>(procs[row].first, procs[row].second);
+										is_selected = true;
+										EN_INFO("selected proc {0} id: {1}", utf16_to_utf8(procs[row].first), procs[row].second);
+									}
+								}
+							}
+							else {
+								if (adding_custom == true) {
+									static char input[256];
+									ImGui::InputText("category name: ", input, sizeof(input), NULL, NULL);
+									if (ImGui::Button("add category")) {
+										std::vector<std::pair<std::wstring, DWORD>> custom;
+										custom.push_back(selected);
+										m_procs.push_back(custom);
+									}
+								}
+								if (ImGui::Button("favorite")) {
+									fav_procs.push_back(selected);
+								}
+								if (ImGui::Button("custom?")) {
+									adding_custom = true;
+								}
+							}
+						}
+							
+						ImGui::EndTable();
+					}
+					else if (column == 1) {
+						ImGui::BeginTable("id_table", 2);
+						ImGui::TableNextRow();
+						ImGui::TableSetColumnIndex(0);
+						ImGui::Text("id: ");
+						ImGui::TableSetColumnIndex(1);
+						ImGui::Text("%d", procs[row].second);
+						ImGui::EndTable();
+					}
+				}
+			}
+			ImGui::EndTable();
+		}
+	}
+
 	void tasks::fav_list() {
 		//list(*this, "favorite", true);
 
@@ -261,6 +338,7 @@ namespace engine {
 		}
 	}
 
+
 	void tasks::onAttach() {
 
 	}
@@ -276,6 +354,7 @@ namespace engine {
 			if (ImGui::Button("get list")) getList();
 			ImGui::End();
 			return;
+
 		}
 		if (is_selected == true) ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
 		else ImGui::Text("No process selected...");
@@ -287,5 +366,9 @@ namespace engine {
 			}
 		all_list();
 		ImGui::End();
+	}
+
+	void tasks::onDetach() {
+
 	}
 }

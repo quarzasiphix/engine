@@ -9,13 +9,13 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d3531510-74a8-4540-8ea5-71b216bb8248}</ProjectGuid>
-    <RootNamespace>imgui</RootNamespace>
+    <ProjectGuid>{588170e3-64c2-4221-b4ab-05aa809eca16}</ProjectGuid>
+    <RootNamespace>hack</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -31,7 +31,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\~$(Platform)\engine\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\~$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)\~$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes/;$(ProjectDir)src/;$(SolutionDir)dependencies/glfw/includes;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes/;$(ProjectDir)src/;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -53,34 +53,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\imgui\imgui.cpp" />
-    <ClCompile Include="src\imgui\imgui_demo.cpp" />
-    <ClCompile Include="src\imgui\imgui_draw.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="src\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="src\imgui\imgui_tables.cpp" />
-    <ClCompile Include="src\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\imgui.hpp" />
-    <ClInclude Include="src\imgui\imconfig.h" />
-    <ClInclude Include="src\imgui\imgui.h" />
-    <ClInclude Include="src\imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="src\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="src\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="src\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="src\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="src\imgui\imgui_internal.h" />
-    <ClInclude Include="src\imgui\imstb_rectpack.h" />
-    <ClInclude Include="src\imgui\imstb_textedit.h" />
-    <ClInclude Include="src\imgui\imstb_truetype.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\glfw\glfw.vcxproj">
-      <Project>{77faaae7-4d51-4b59-9294-4181a3630652}</Project>
-    </ProjectReference>
+    <ClInclude Include="includes\common.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
