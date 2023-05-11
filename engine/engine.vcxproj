@@ -43,7 +43,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/imgui/src;$(SolutionDir)dependencies/glfw/includes;$(SolutionDir)dependencies/glad/includes/;$(ProjectDir)includes;$(ProjectDir)src;$(SolutionDir)vendor/spdlog/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/imgui/src;$(SolutionDir)dependencies/glfw/includes;$(SolutionDir)dependencies/glad/includes/;$(SolutionDir)engine/includes;$(SolutionDir)engine/src;$(SolutionDir);$(SolutionDir)vendor/spdlog/include;$(SolutionDir)hack/includes/;$(SolutionDir)hack/src/</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>enpch.hpp</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -92,6 +92,9 @@
     </ProjectReference>
     <ProjectReference Include="..\dependencies\imgui\imgui.vcxproj">
       <Project>{d3531510-74a8-4540-8ea5-71b216bb8248}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\hack\hack.vcxproj">
+      <Project>{588170e3-64c2-4221-b4ab-05aa809eca16}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

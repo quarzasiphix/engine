@@ -1,6 +1,9 @@
 #pragma once
 #include "events.hpp"
 
+#pragma warning(push)
+#pragma warning(disable:4251)
+
 namespace engine {
 	class ENGINE_API windowResizeEvent : public event {
 	public:

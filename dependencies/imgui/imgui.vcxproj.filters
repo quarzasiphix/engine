@@ -77,7 +77,7 @@
     <ClInclude Include="src\imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\umgui\umgui.hpp">
+    <ClInclude Include="src\imgui.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
