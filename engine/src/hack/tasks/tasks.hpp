@@ -18,13 +18,30 @@ namespace engine {
 		void on_select();
 
 		void getList();
+		void selectedAccess();
 		void fav_list();
 		void all_list();
+		void listAccess();
 		void lists(const char* name, std::vector<std::pair<std::wstring, DWORD>> procs);
 
 		void onAttach();
 		void onUpdate();
 		void onDetach();
+
+		void writeMemory();
+		void readMemory();
+
+		union {
+			int intValue;
+			float floatValue;
+			double doubleValue;
+		};
+
+		union {
+			int readInt;
+			float readFloat;
+			double readDouble;
+		};
 	};
 }
 

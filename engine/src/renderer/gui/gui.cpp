@@ -76,10 +76,38 @@ namespace engine {
 
     }
 
+
+    void dock(gui* e) {                                                                                                                                                                         
+
+        //opengl::WindowData& data = *(opengl::WindowData*)glfwGetWindowUserPointer(e->m_window);
+        //ImGui::SetNextWindowSize(ImVec2((float)data.Width, (float)data.Height));
+
+        ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoBringToFrontOnFocus;
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            //dockspace_flags |= ImGuiDockNodeFlags_PassthruCentralNode;
+            window_flags |= ImGuiWindowFlags_NoBackground;
+        }
+        
+        ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
+        ImGui::Begin("Dockspace", nullptr, window_flags);
+
+        ImGui::End();
+
+    }
+
     bool HAKOR = false;
 
+    bool open_ui = true;
     void gui::ui() {
-        ImGui::Begin("yoo");
+
+        ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoBringToFrontOnFocus;
+        // Set up the viewport for each window
+        ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
+        ImGui::Begin("yoo", &open_ui, window_flags);
+        
         ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
         ImGui::Text("sup");
         if (HAKOR == false) {
@@ -90,49 +118,15 @@ namespace engine {
         ImGui::End();
     }
 
-    void dock(gui* e) {                                                                                                                                                                         
-
-        //opengl::WindowData& data = *(opengl::WindowData*)glfwGetWindowUserPointer(e->m_window);
-        //ImGui::SetNextWindowSize(ImVec2((float)data.Width, (float)data.Height));
-
-        static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
-        ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoBringToFrontOnFocus;
-        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-            dockspace_flags |= ImGuiDockNodeFlags_PassthruCentralNode;
-            window_flags |= ImGuiWindowFlags_NoBackground;
-        }
-        ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
-        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
-        ImGui::Begin("Dockspace", nullptr, window_flags);
-        ImGui::DockSpace(ImGui::GetID("MyDockspace"), ImVec2(0.0f, 0.0f), dockspace_flags);
-
-        ImGui::End();
-
-        /*
-        // Add menu bar
-        if (ImGui::BeginMenuBar()) {
-            if (ImGui::BeginMenu("File")) {
-                ImGui::MenuItem("Save", NULL);
-                ImGui::MenuItem("Exit", NULL);
-                ImGui::EndMenu();
-            }
-            ImGui::EndMenuBar();
-        }
-        */
-
-    }
-
-
     void gui::onUpdate() { 
         //// Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-
         //dock(this);
 
-        if (HAKOR == true) hack->onUpdate();
         ui();
+        if (HAKOR == true) hack->onUpdate();
 
         ImGui::ShowDemoWindow();
 

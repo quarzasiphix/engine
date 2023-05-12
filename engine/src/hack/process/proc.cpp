@@ -50,24 +50,26 @@ namespace engine {
         return mainThreadId;
     }
 
-    proc::thread::thread(engine::proc p_proc) : proc(p_proc) {
+    proc::thread::thread(engine::proc& p_proc) : proc(p_proc) {
         targetMainThreadId = GetMainThreadId(proc.get_pid());
         if (targetMainThreadId == 0) {
-            proc.error_handle("Failed to get the main thread ID of the target process");
+            EN_WARN("Failed to get the main thread ID of the target process");
             return;
         }
 
         h_thread = OpenThread(THREAD_ALL_ACCESS, FALSE, targetMainThreadId);
         if (h_thread == NULL) {
-            proc.error_handle("Failed to open target thread");
+            EN_WARN("Failed to open target thread");
             return;
         }
 
         context.ContextFlags = CONTEXT_FULL;
         if (!GetThreadContext(h_thread, &context)) {
-            proc.error_handle("Failed to get thread context");
+            EN_WARN("Failed to get thread context");
             return;
         }
+
+        attached = true;
     }
 
     proc::proc(std::wstring name) : m_name(name) {
@@ -102,10 +104,27 @@ namespace engine {
 
         h_proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
         if (h_proc == NULL) {
-            error_handle("Failed to open process");
+            EN_WARN("Not allowed to access process : pid {0} : ", pid);
+            attached = false;
+            is_access = 2;
             return;
         }
 
-        m_thred = new thread(*this);
+        m_thread = new thread(*this);
+
+        // Get the module handle for the target module in the target process
+        if (!EnumProcessModules(h_proc, &h_module, sizeof(h_module), &cbNeeded)) {
+            EN_WARN("Failed to enumerate process modules");
+            return;
+        }
+
+        // Allocate memory to store the module information
+        if (!GetModuleInformation(h_proc, h_module, &module_info, sizeof(module_info))) {
+            EN_WARN("Failed to get module information: {0}", GetLastError());
+            return;
+        }
+
+        is_access = 1;
+        attached = true;
     }
 }

@@ -108,8 +108,6 @@ namespace engine {
 	}
 
 	void opengl::onUpdate() {
-		if (ui->initialised == true)
-			ui->onUpdate();
 		
 		glfwPollEvents();
 		
@@ -121,6 +119,9 @@ namespace engine {
 		glClear(GL_COLOR_BUFFER_BIT); // clear color buffer with the specified color
 		
 		glfwSwapBuffers(m_window);
+
+		if (ui->initialised == true)
+			ui->onUpdate();
 	}
 
 	void opengl::onDetach() {
