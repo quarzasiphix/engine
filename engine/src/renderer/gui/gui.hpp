@@ -4,7 +4,9 @@
 namespace engine {
 	//class ENGINE_API layer::layers;
 	//class ENGINE_API hack::proc;
-	class ENGINE_API hackor;
+	namespace hack {
+		class ENGINE_API hackor;
+	}
 	class ENGINE_API event;	
 	class ENGINE_API windowResizeEvent;
 	class ENGINE_API opengl;
@@ -21,7 +23,7 @@ namespace engine {
 		GLFWwindow* m_window;
 		void ui();
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-		hackor* hack;
+		hack::hackor* hack;
 		bool initialised = false;
 		int display_w, display_h; 
 		float scale_x, scale_y;

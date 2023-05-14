@@ -1,13 +1,16 @@
+#define HACK
 #include "hack.hpp"
 
 namespace engine {
-	hackor::hackor() {
-		this->m_task = new tasks();
+	namespace hack {
+		hackor::hackor() {
+			//engine::hack_log::init();
+			this->m_task = new tasks();
+			m_task->getList();
+		}
 
-		m_task->getList();
-	}
-
-	void hackor::onUpdate() {
-		m_task->onUpdate();
+		void hackor::onUpdate() {
+			m_task->onUpdate();
+		}
 	}
 }

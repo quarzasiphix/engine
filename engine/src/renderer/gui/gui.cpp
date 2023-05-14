@@ -1,3 +1,4 @@
+#define HACK
 #include "gui.hpp"
 
 namespace engine {
@@ -112,7 +113,7 @@ namespace engine {
         ImGui::Text("sup");
         if (HAKOR == false) {
             HAKOR = true;
-            hack = new hackor();
+            hack = new hack::hackor();
         }
 
         ImGui::End();

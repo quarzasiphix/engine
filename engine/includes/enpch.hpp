@@ -4,6 +4,11 @@
 #pragma warning(disable:4251)
 
 
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/fmt/ostr.h>
+#include <spdlog/fmt/fmt.h>
+
 #include <iostream>
 #include <Windows.h>
 #include <utility>
@@ -22,10 +27,9 @@
 #include <Psapi.h>
 #include <search.h>
 #include <iomanip>
-
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/fmt/ostr.h>
+#include <locale>
+#include <codecvt>
+#include <any>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
