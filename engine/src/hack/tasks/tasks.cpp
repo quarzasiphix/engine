@@ -319,7 +319,7 @@ namespace engine {
 				
 				case DataType::Int: {
 					int intValue = std::any_cast<int>(am->readMemory());
-					ImGui::InputInt("write value", &intValue);
+					ImGui::InputInt(std::string("write value " + std::to_string(i)).c_str(), &intValue);
 					if (intValue != std::any_cast<int>(am->readMemory())) {
 						am->setWriteValue(intValue);
 						am->writeMemory();
@@ -329,7 +329,7 @@ namespace engine {
 				
 				case DataType::Float: {
 					float floatValue = std::any_cast<float>(am->readMemory());
-					ImGui::InputFloat("write value", &floatValue);
+					ImGui::InputFloat(std::string("write value " + std::to_string(i)).c_str(), &floatValue);
 					if (floatValue != std::any_cast<float>(am->readMemory())) {
 						am->setWriteValue(floatValue);
 						am->writeMemory();
@@ -339,7 +339,7 @@ namespace engine {
 		
 				case DataType::Double: {
 					double doubleValue = std::any_cast<double>(am->readMemory());
-					ImGui::InputDouble("write value", &doubleValue);
+					ImGui::InputDouble(std::string("write value " + std::to_string(i)).c_str(), &doubleValue);
 					if (doubleValue != std::any_cast<double>(am->readMemory())) {
 						am->setWriteValue(doubleValue);
 						am->writeMemory();
@@ -349,7 +349,7 @@ namespace engine {
 				}
 
 				uint64_t address = am->getAddress();
-				ImGui::InputScalar("Address", ImGuiDataType_U64, &address, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal); ImGui::Spacing();
+				ImGui::InputScalar(std::string("Address " + std::to_string(i)).c_str(), ImGuiDataType_U64, &address, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal); ImGui::Spacing();
 				am->setAddress(address);
 
 				/*
@@ -367,6 +367,7 @@ namespace engine {
 
 				// instead try to read the typename value in access memory
 
+				/*
 				if (m_proc->read_success == true) {
 					switch (am->getSelectedType()) {
 					case DataType::Int: {
@@ -386,6 +387,7 @@ namespace engine {
 					}
 					}
 				}
+				*/
 			ImGui::Unindent();
 			}
 		}
@@ -393,8 +395,12 @@ namespace engine {
 		static uint64_t addressinput = 0;
 		void tasks::selectedAccess() {
 			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
-			//ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
-
+			ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
+			const char* items[] = { "Int", "Float", "Double" };
+			int itemIndex = static_cast<int>(selectedType);
+			if (ImGui::Combo("Type", &itemIndex, items, IM_ARRAYSIZE(items))) {
+				selectedType = static_cast<DataType>(itemIndex);
+			}
 			ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
 			if (addressinput != 0) {
 				if (ImGui::Button("Create memory access point")) {
