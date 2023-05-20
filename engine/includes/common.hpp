@@ -8,8 +8,7 @@
 
 #include <renderer/renderer.hpp>
 
-#ifdef HACK
+#ifdef HACK 
 	#include <hack/hack.hpp>
 #endif
-
 

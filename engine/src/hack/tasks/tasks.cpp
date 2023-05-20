@@ -1,6 +1,5 @@
 #define HACK
 #include "tasks.hpp"
-#include <variant>
 
 namespace engine {
 	namespace hack {
@@ -83,6 +82,7 @@ namespace engine {
 			}
 			// Now walk the snapshot of processes, and
 			// store information about each process in turn
+			all_procs.clear();
 			do {
 				std::pair<std::wstring, DWORD> process(pe32.szExeFile, pe32.th32ProcessID);
 				all_procs.push_back(process);
@@ -188,17 +188,15 @@ namespace engine {
 					for (int row = 0; row < procs.size(); row++) {
 						if (strstr(utf16_to_utf8(procs[row].first).c_str(), search_term)) {
 							ImGui::TableNextRow();
-
 							for (int column = 0; column < 2; column++) {
 								ImGui::TableSetColumnIndex(column);
-
 								if (column == 0) {
 									ImGui::BeginTable("name_table", 2);
 									ImGui::TableNextRow();
 									ImGui::TableSetColumnIndex(0);
 									ImGui::Text("name: %s", utf16_to_utf8(procs[row].first).c_str());
-
 									//if (name == "all") {
+									
 									const std::wstring& valueToCheck = procs[row].first;
 									bool isValueInFavProc = false;
 									int foundIndex = -1;
@@ -218,6 +216,7 @@ namespace engine {
 										if (ImGui::Button("remove"))
 											fav_procs.erase(fav_procs.begin() + foundIndex);
 									}
+									
 									else {
 										// The value doesn't exist in fav_procs vector
 										if (ImGui::Button("add favorite")) {
@@ -227,6 +226,7 @@ namespace engine {
 									}
 
 									ImGui::SameLine();
+									
 									if (is_selected && selected == procs[row] && m_proc->attached == true) {
 										if (ImGui::Button("unattach")) {
 											is_selected = false;
@@ -235,6 +235,7 @@ namespace engine {
 											delete m_proc;
 										}
 									}
+									
 									else {
 										if (ImGui::Button("attach")) {
 											selected = std::make_pair(procs[row].first, procs[row].second);
@@ -244,6 +245,7 @@ namespace engine {
 									}
 									ImGui::EndTable();
 								}
+								
 								else if (column == 1) {
 									ImGui::BeginTable("id_table", 2);
 									ImGui::TableNextRow();
@@ -297,18 +299,13 @@ namespace engine {
 		//static uint64_t address = 0;
 
 
-
 		bool mem_acc = true;
-
 		std::vector<std::unique_ptr<baseAccessMemory>> addressPoints;
-
 		static bool toggleState = false;
-
 		DataType selectedType;
-
 		//template <typename T>
-		void tasks::addressAccess(std::unique_ptr<baseAccessMemory>& am) {
-			if (ImGui::CollapsingHeader("Access memory", &mem_acc)) {
+		void tasks::addressAccess(std::unique_ptr<baseAccessMemory>& am, int i) {
+			if (ImGui::CollapsingHeader(std::string("Access memory " + std::to_string(i)).c_str())) {
 				ImGui::Indent();
 				ImGui::Spacing();
 				ImGui::Spacing();
@@ -319,22 +316,34 @@ namespace engine {
 			//		am.selectedType = static_cast<DataType>(itemIndex);
 				//}
 				switch (am->getSelectedType()) {
+				
 				case DataType::Int: {
 					int intValue = std::any_cast<int>(am->readMemory());
 					ImGui::InputInt("write value", &intValue);
-					am->setWriteValue(intValue);
+					if (intValue != std::any_cast<int>(am->readMemory())) {
+						am->setWriteValue(intValue);
+						am->writeMemory();
+					}
 				}
 				break;
+				
 				case DataType::Float: {
 					float floatValue = std::any_cast<float>(am->readMemory());
 					ImGui::InputFloat("write value", &floatValue);
-					am->setWriteValue(floatValue);
+					if (floatValue != std::any_cast<float>(am->readMemory())) {
+						am->setWriteValue(floatValue);
+						am->writeMemory();
+					}
 				}
 				break;
+		
 				case DataType::Double: {
 					double doubleValue = std::any_cast<double>(am->readMemory());
 					ImGui::InputDouble("write value", &doubleValue);
-					am->setWriteValue(doubleValue);
+					if (doubleValue != std::any_cast<double>(am->readMemory())) {
+						am->setWriteValue(doubleValue);
+						am->writeMemory();
+					}
 				}
 				break;
 				}
@@ -343,68 +352,71 @@ namespace engine {
 				ImGui::InputScalar("Address", ImGuiDataType_U64, &address, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal); ImGui::Spacing();
 				am->setAddress(address);
 
+				/*
 				if (am->getAddress() != 0) {
 					if (ImGui::Button("Write"))
 						am->writeMemory();
-					if (ImGui::Button("Read"))
-						am->readMemory();
-					ImGui::SameLine();
-					if (ImGui::Checkbox("Toggle", &toggleState)) {
-						if (toggleState) {
-							am->readMemory();
-						}
-						else {
-
-						}
-					}
-				}
+					//if (ImGui::Button("Read"))
+						//am->readMemory();
+					//ImGui::SameLine();
+					//if (ImGui::Checkbox("Toggle", &toggleState)) {
+						//if (toggleState) am->readMemory();
+						//else {
+					//}
+				}*/
 
 				// instead try to read the typename value in access memory
 
 				if (m_proc->read_success == true) {
 					switch (am->getSelectedType()) {
-					case DataType::Int:
-						ImGui::Text("Value: %d", am->getReadValue());
-						break;
-					case DataType::Float:
-						ImGui::Text("Value: %f", am->getReadValue());
-						break;
-					case DataType::Double:
-						ImGui::Text("Value: %f", am->getReadValue());
+					case DataType::Int: {
+						int value = std::any_cast<int>(am->getReadValue());
+						ImGui::Text("Value: %d", value);
 						break;
 					}
+					case DataType::Float: {
+						float value = std::any_cast<float>(am->getReadValue());
+						ImGui::Text("Value: %f", value);
+						break;
+					}
+					case DataType::Double: {
+						double value = std::any_cast<double>(am->getReadValue());
+						ImGui::Text("Value: %f", value);
+						break;
+					}
+					}
 				}
-			}
 			ImGui::Unindent();
-
+			}
 		}
 
 		static uint64_t addressinput = 0;
-
 		void tasks::selectedAccess() {
 			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
 			//ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
 
 			ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
+			if (addressinput != 0) {
+				if (ImGui::Button("Create memory access point")) {
+					switch (selectedType) {
+					case DataType::Int:
+						addressPoints.push_back(std::make_unique<accessMemory<int>>(*m_proc, addressinput, selectedType));
+						break;
+					case DataType::Float:
+						addressPoints.push_back(std::make_unique<accessMemory<float>>(*m_proc, addressinput, selectedType));
 
-			if (ImGui::Button("Create memory access point")) {
-				switch (selectedType) {
-				case DataType::Int:
-					addressPoints.push_back(std::make_unique<accessMemory<int>>(*m_proc, addressinput, selectedType));
-					break;
-				case DataType::Float:
-					addressPoints.push_back(std::make_unique<accessMemory<float>>(*m_proc, addressinput, selectedType));
-
-					break;
-				case DataType::Double:
-					addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
-					break;
+						break;
+					case DataType::Double:
+						addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
+						break;
+					}
 				}
 			}
+			else ImGui::Text("No address inputed");
 
 			if (!addressPoints.empty()) {
 				for (int i = 0; i < addressPoints.size(); i++) {
-					addressAccess(addressPoints[i]);
+					addressAccess(addressPoints[i], i);
 				}
 			}
 			else {

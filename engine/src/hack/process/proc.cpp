@@ -163,7 +163,7 @@ namespace engine {
         bool accessMemory<T>::writeMemory() {
             if (m_proc.writeProcMem<T>(address, write))
                 return true;
-            return false;
+            return false;               
         }
 
         template<typename T>

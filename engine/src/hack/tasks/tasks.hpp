@@ -20,7 +20,7 @@ namespace engine {
 			proc* m_proc;
 
 			//template <typename T>
-			void addressAccess(std::unique_ptr<baseAccessMemory>& am);
+			void addressAccess(std::unique_ptr<baseAccessMemory>& am, int i);
 
 			void on_select();
 

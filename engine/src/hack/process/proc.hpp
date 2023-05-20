@@ -9,45 +9,6 @@ namespace engine {
 			Double
 		};
 
-		class ENGINE_API baseAccessMemory {
-		public:
-			virtual ~baseAccessMemory() {}
-			virtual bool writeMemory() = 0;
-			virtual std::any readMemory() = 0;
-			virtual DataType getSelectedType() = 0;
-			virtual uint64_t getAddress() = 0;
-			virtual void setAddress(uint64_t m_address) = 0;
-			virtual void setWriteValue(std::any value) = 0;
-			virtual std::any getReadValue() = 0;
-		};
-
-		template <typename T>
-		struct ENGINE_API accessMemory : public baseAccessMemory {
-			accessMemory(proc& m_proc, uint64_t address, DataType selectedType) : m_proc(m_proc), address(address), selectedType(selectedType) {}
-
-			proc& m_proc;
-			uint64_t address;
-			DataType selectedType;
-
-			T read = {};
-			T write = {};
-
-			bool writeMemory() override {
-				if (this.m_proc->writeProcMem<T>(address, &write)) // Pass address of 'write'
-					return true;
-				return false;
-			}
-
-			std::any readMemory() override {
-				return m_proc.readProcMem<T>(address);
-			}
-
-			DataType getSelectedType() override { return selectedType; }
-			uint64_t getAddress() override { return address; }
-			void setAddress(uint64_t m_address) override { address = m_address; }
-			std::any getReadValue() override { return read; }
-			void setWriteValue(std::any value) override { write = std::any_cast<T>(value); }
-		};
 
 		class ENGINE_API proc {
 			std::wstring m_name;
@@ -121,7 +82,7 @@ namespace engine {
 			T readProcMem(uintptr_t address) {
 				T value;
 				read_success = false;
-				if (!ReadProcessMemory(h_proc, address, &value, sizeof(value), NULL)) {
+				if (!ReadProcessMemory(h_proc, (LPCVOID)address, &value, sizeof(value), NULL)) {
 					DWORD errorCode = GetLastError();
 					EN_ASSERT("Failed reading process memory, error: {0}", errorCode);
 					throw ReadMemoryException();
@@ -131,8 +92,8 @@ namespace engine {
 			}
 
 			template <typename T>
-			bool writeProcMem(LPVOID address, T& value) {
-				if (!WriteProcessMemory(h_proc, address, &value, sizeof(value), NULL)) {
+			bool writeProcMem(uintptr_t address, T& value) {
+				if (!WriteProcessMemory(h_proc, (LPVOID)address, &value, sizeof(value), NULL)) {
 					DWORD errorCode = GetLastError();
 					EN_ASSERT("Failed writing memory, error: {0}", errorCode);
 					return false;
@@ -147,5 +108,44 @@ namespace engine {
 
 		};
 
+		class ENGINE_API baseAccessMemory {
+		public:
+			virtual ~baseAccessMemory() {}
+			virtual bool writeMemory() = 0;
+			virtual std::any readMemory() = 0;
+			virtual DataType getSelectedType() = 0;
+			virtual uint64_t getAddress() = 0;
+			virtual void setAddress(uint64_t m_address) = 0;
+			virtual void setWriteValue(std::any value) = 0;
+			virtual std::any getReadValue() = 0;
+		};
+
+		template <typename T>
+		struct ENGINE_API accessMemory : public baseAccessMemory {
+			accessMemory(proc& m_proc, uintptr_t address, DataType selectedType) : m_proc(m_proc), address(address), selectedType(selectedType) {}
+
+			proc& m_proc;
+			uintptr_t address;
+			DataType selectedType;
+
+			T read = {};
+			T write = {};
+
+			bool writeMemory() override {
+				if (m_proc.writeProcMem<T>(address, write)) // Pass address of 'write'
+					return true;
+				return false;
+			}
+
+			std::any readMemory() override {
+				return m_proc.readProcMem<T>(address);
+			}
+
+			DataType getSelectedType() override { return selectedType; }
+			uintptr_t getAddress() override { return address; }
+			void setAddress(uintptr_t m_address) override { address = m_address; }
+			std::any getReadValue() override { return read; }
+			void setWriteValue(std::any value) override { write = std::any_cast<T>(value); }
+		};
 	}
 }
