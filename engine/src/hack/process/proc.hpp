@@ -65,7 +65,7 @@ namespace engine {
 			uintptr_t get_startAddress() { return (uintptr_t)module_info.lpBaseOfDll; }
 			uintptr_t get_endAddress() { return get_startAddress() + module_info.SizeOfImage; }
 
-			void get_address(uintptr_t& start, uintptr_t& end) {
+			void get_memoryRegion(uintptr_t& start, uintptr_t& end) {
 				start = (uintptr_t)module_info.lpBaseOfDll;
 				end = startAddress + module_info.SizeOfImage;
 			}
