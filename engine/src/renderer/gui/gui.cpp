@@ -104,9 +104,9 @@ namespace engine {
 
         ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoBringToFrontOnFocus;
         // Set up the viewport for each window
-        ImGuiViewport* viewport = ImGui::GetMainViewport();
-        ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
-        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
+        //ImGuiViewport* viewport = ImGui::GetMainViewport();
+        //ImGui::SetNextWindowSize(ImGui::GetMainViewport()->Size);
+        //ImGui::SetNextWindowPos(ImGui::GetMainViewport()->Pos);
         ImGui::Begin("yoo", &open_ui, window_flags);
         
         ImGui::ColorEdit3("clear color", (float*)&this->clear_color);
