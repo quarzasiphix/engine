@@ -16,7 +16,7 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 <h3> self made memory hacker </h3>
 
-![hack](https://github.com/quarzasiphix/screenshots/blob/main/process-hac-examplpe.mp4)
+![hack](https://github.com/quarzasiphix/screenshots/blob/main/proc-hac.gif)
 
 ---
 
