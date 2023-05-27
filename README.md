@@ -6,6 +6,8 @@
 
 <h4> C++ std 20 vs 2022 </h4>
 
+(click "show all files" for every project, vs doesnt save this)
+
 --- 
 
 <h4> easy to work with vs project template, self made </h4>
