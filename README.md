@@ -26,7 +26,6 @@ using <a href="https://github.com/quarzasiphix/template" style="display:inline; 
 
 --- 
 <h4>
----
 
 # easy to work with abstractions
 
