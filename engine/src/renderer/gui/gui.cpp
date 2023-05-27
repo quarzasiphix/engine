@@ -131,8 +131,6 @@ namespace engine {
 
         ImGui::ShowDemoWindow();
 
-        //UpdateImGuiScale();
-
         ImGui::Render();
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

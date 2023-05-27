@@ -264,17 +264,17 @@ namespace engine {
 			}
 		}
 
-
+		int is_access = 0;
 		void tasks::on_select() {
 			m_proc = new proc(selected.first);
-			if (m_proc == NULL) {
+			if (m_proc->get_proc() == NULL) {
 				EN_WARN("Failed attaching to process");
+				is_access = m_proc->is_access;
 				return;
 			}
-			else {
-				attached = true;
-				EN_INFO("Attached to process : pid {0} :", selected.second);
-			}
+			attached = true;
+			is_access = m_proc->is_access;
+			EN_INFO("Attached to process : pid {0} :", selected.second);
 		}
 
 		void tasks::fav_list() {
@@ -479,33 +479,25 @@ namespace engine {
 			ImGui::Spacing();
 			ImGui::Spacing();
 			ImGui::Indent();
-			if (is_selected == false) ImGui::Text("No process selected...");
-			try {
-				if (attached == true) {
-					if (m_proc->attached == true) {
-						ImGui::Text("attached: %s id: %d", utf16_to_utf8(selected.first), selected.second);
-						//int mainThreadId = m_proc->m_thread->get_mainthreadid();
-						//ImGui::Text("main thread id: %i", mainThreadId);
-						//m_proc->get_address(start, end);
-						uintptr_t start = m_proc->get_startAddress();
-						uintptr_t end = m_proc->get_endAddress();
-						ImGui::Text("start address: %#lx \nend address: %#lx", start, end);
+			if (attached == true) {
+				if (m_proc->attached == true) {
+					ImGui::Text("attached: %s id: %d", utf16_to_utf8(selected.first), selected.second);
+					//int mainThreadId = m_proc->m_thread->get_mainthreadid();
+					//ImGui::Text("main thread id: %i", mainThreadId);
+					//m_proc->get_address(start, end);
+					uintptr_t start = m_proc->get_startAddress();
+					uintptr_t end = m_proc->get_endAddress();
+					ImGui::Text("start address: %#lx \nend address: %#lx", start, end);
 
-						// Assign the RSP register value to the variable
-						ImGui::Text("Rsp pointer: %#lx", m_proc->get_context().Rsp);
-						ImGui::Text("Rsi pointer: %#lx", m_proc->get_context().Rsi);
-
-					}
-					else {
-						if (m_proc->is_access = 2)
-							ImGui::Text("Not enough priviledges to attach.");
-					}
+					// Assign the RSP register value to the variable
+					ImGui::Text("Rsp pointer: %#lx", m_proc->get_context().Rsp);
+					ImGui::Text("Rsi pointer: %#lx", m_proc->get_context().Rsi);
 				}
 			}
-			catch (...) {
-				EN_WARN("Failed getting rsp");
-			}
-
+			else ImGui::Text("No process selected...");
+			if (is_access == 2)
+				ImGui::Text("Not enough priviledges to attach.");
+			
 			ImGui::Unindent();
 			//if (is_selected == true) selectedAccess();
 
