@@ -7,7 +7,7 @@
 <h4> C++ std 20 vs 2022 </h4>
 
 (click "show all files" for every project, vs doesnt save this)
-runs out of the box, no required setup, just download and compile.
+<p> runs out of the box, no required setup, just download and compile. </p>
 
 --- 
 
