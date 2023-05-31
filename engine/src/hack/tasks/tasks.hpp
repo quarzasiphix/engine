@@ -25,7 +25,10 @@ namespace engine {
 			void on_select();
 
 			void getList();
+
 			void selectedAccess();
+			void makeAccessPoint();
+
 			void fav_list();
 			void all_list();
 			void listAccess();

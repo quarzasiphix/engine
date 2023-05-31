@@ -392,42 +392,95 @@ namespace engine {
 			}
 		}
 
+		static int Access = 0;
+
 		static uint64_t addressinput = 0;
-		void tasks::selectedAccess() {
-			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
+
+		const char* signatureinput;
+		bool found_sig = true;
+		bool sig_added = false;
+		int sigs_added = 0;
+
+		void tasks::makeAccessPoint() {
 			ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
 			const char* items[] = { "Int", "Float", "Double" };
 			int itemIndex = static_cast<int>(selectedType);
 			if (ImGui::Combo("Type", &itemIndex, items, IM_ARRAYSIZE(items))) {
 				selectedType = static_cast<DataType>(itemIndex);
 			}
-			ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
-			if (addressinput != 0) {
-				if (ImGui::Button("Create memory access point")) {
-					switch (selectedType) {
-					case DataType::Int:
-						addressPoints.push_back(std::make_unique<accessMemory<int>>(*m_proc, addressinput, selectedType));
-						break;
-					case DataType::Float:
-						addressPoints.push_back(std::make_unique<accessMemory<float>>(*m_proc, addressinput, selectedType));
 
-						break;
-					case DataType::Double:
-						addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
-						break;
+			if (ImGui::Button("Create memory access point")) {
+				switch (selectedType) {
+				case DataType::Int:
+					addressPoints.push_back(std::make_unique<accessMemory<int>>(*m_proc, addressinput, selectedType));
+					break;
+				case DataType::Float:
+					addressPoints.push_back(std::make_unique<accessMemory<float>>(*m_proc, addressinput, selectedType));
+
+					break;
+				case DataType::Double:
+					addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
+					break;
+				}
+			}
+		}
+
+		void tasks::selectedAccess() {
+			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
+			switch (Access) {
+			case 0:
+				ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
+				if (addressinput != 0) 
+					if(ImGui::Button("Create access point")) makeAccessPoint();
+				
+				else ImGui::Text("No address inputed");
+
+				if (!addressPoints.empty()) {
+					for (int i = 0; i < addressPoints.size(); i++) {
+						addressAccess(addressPoints[i], i);
+					}
+				}
+				else {
+					ImGui::Text("No address points created...");
+				}
+			case 1:
+				ImGui::Text("signature scan");
+
+				char siginput[256];
+				strcpy(siginput, signatureinput);  // Copy the initial name into the editedName buffer
+
+				// ImGui frame
+				ImGui::InputText("##input signature", siginput, sizeof(siginput));
+
+				// When you're ready to update the original name with the edited name
+				if (ImGui::Button("scan")) {
+					strcpy(const_cast<char*>(signatureinput), siginput);
+					if (m_proc->find_sig(signatureinput) == false) found_sig = false;
+					if (found_sig) {
+						uintptr_t address = m_proc->m_sigs->m_patterns[sigs_added].second;
+
+						// Convert the uintptr_t to a string using std::stringstream
+						std::stringstream ss;
+						ss << std::hex << address;
+						std::string addressStr = ss.str();
+						ImGui::Text("Found sig, address: %s", addressStr.c_str());
+		
+						if (sig_added) {
+							if (ImGui::Button("create access point for signature")) {
+								addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
+								sig_added = true;
+							}
+						}
+						
+						/*
+						else {
+							ImGui::Text("")
+						}
+						*/
 					}
 				}
 			}
-			else ImGui::Text("No address inputed");
-
-			if (!addressPoints.empty()) {
-				for (int i = 0; i < addressPoints.size(); i++) {
-					addressAccess(addressPoints[i], i);
-				}
-			}
-			else {
-				ImGui::Text("No address points created...");
-			}
+			
 		}
 
 		void tasks::listAccess() {

@@ -1,5 +1,6 @@
 #pragma once
 #include <common.hpp>
+#include "signature/signature.hpp"
 
 namespace engine {
 	namespace hack {
@@ -9,7 +10,7 @@ namespace engine {
 			Double
 		};
 
-
+		class ENGINE_API signature;
 		class ENGINE_API proc {
 			std::wstring m_name;
 			DWORD m_pid{};
@@ -43,12 +44,14 @@ namespace engine {
 			};
 																					
 		public:
-			thread* m_thread;
-
 			proc(std::wstring name);
 			proc(DWORD pid);
 			proc(DWORD pid, std::wstring name);
 			~proc();
+			
+			thread* m_thread;
+			signature* m_sigs;
+
 			void attach();
 			bool attached = false;
 			int is_access = 0;
@@ -64,6 +67,17 @@ namespace engine {
 
 			uintptr_t get_startAddress() { return (uintptr_t)module_info.lpBaseOfDll; }
 			uintptr_t get_endAddress() { return get_startAddress() + module_info.SizeOfImage; }
+
+			SIZE_T get_size() {
+				PROCESS_MEMORY_COUNTERS_EX pmc;
+				SIZE_T size = 0;
+
+				if (GetProcessMemoryInfo(h_proc, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+					size = pmc.PrivateUsage;
+				}
+
+				return size;
+			}
 
 			void get_memoryRegion(uintptr_t& start, uintptr_t& end) {
 				start = (uintptr_t)module_info.lpBaseOfDll;
@@ -101,10 +115,16 @@ namespace engine {
 				return true;
 			}
 
+			bool find_sig(const char* sig) {
+				return m_sigs->scan(sig);
+			}
+
+
 			void error_handle(const char* error) {
 				//EN_WARN("Error handled {0}", error);
 				//EN_ASSERT("  process  : name {0} pid {1} : ", m_name, pid);
 			}
+
 
 		};
 
@@ -147,5 +167,8 @@ namespace engine {
 			std::any getReadValue() override { return read; }
 			void setWriteValue(std::any value) override { write = std::any_cast<T>(value); }
 		};
+
+
+
 	}
 }
