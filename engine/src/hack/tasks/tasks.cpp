@@ -402,7 +402,7 @@ namespace engine {
 		int sigs_added = 0;
 
 		void tasks::makeAccessPoint() {
-			ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
+			//ImGui::Text("Selected Type: %d", static_cast<int>(selectedType));
 			const char* items[] = { "Int", "Float", "Double" };
 			int itemIndex = static_cast<int>(selectedType);
 			if (ImGui::Combo("Type", &itemIndex, items, IM_ARRAYSIZE(items))) {
@@ -431,18 +431,29 @@ namespace engine {
 			case 0:
 				ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
 				if (addressinput != 0) 
-					if(ImGui::Button("Create access point")) makeAccessPoint();
+					makeAccessPoint();
+					//if(ImGui::Button("Create access point")) 
 				
 				else ImGui::Text("No address inputed");
 
 				if (!addressPoints.empty()) {
 					for (int i = 0; i < addressPoints.size(); i++) {
+						if (ImGui::Button(("Remove##" + std::to_string(i)).c_str())) {
+							addressPoints.erase(addressPoints.begin() + i);
+							// Decrease the loop counter to account for the removed element
+							i--;
+						}
+						ImGui::SameLine();
 						addressAccess(addressPoints[i], i);
+		
 					}
 				}
+
 				else {
 					ImGui::Text("No address points created...");
 				}
+
+				/*
 			case 1:
 				ImGui::Text("signature scan");
 
@@ -476,11 +487,10 @@ namespace engine {
 						else {
 							ImGui::Text("")
 						}
-						*/
 					}
-				}
+					*/
+				
 			}
-			
 		}
 
 		void tasks::listAccess() {

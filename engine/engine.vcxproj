@@ -57,7 +57,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\hack\process\signature\signature.cpp" />
     <ClCompile Include="src\hack\hack.cpp" />
     <ClCompile Include="src\hack\process\proc.cpp" />
     <ClCompile Include="src\hack\tasks\tasks.cpp" />
@@ -67,7 +66,6 @@
     <ClCompile Include="src\app\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\hack\process\signature\signature.hpp" />
     <ClInclude Include="src\hack\hack.hpp" />
     <ClInclude Include="src\hack\process\proc.hpp" />
     <ClInclude Include="src\hack\tasks\tasks.hpp" />

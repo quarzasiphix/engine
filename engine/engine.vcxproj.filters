@@ -36,9 +36,6 @@
     <ClCompile Include="src\hack\hack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\hack\process\signature\signature.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\app.hpp">
@@ -96,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\hack\hack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hack\process\signature\signature.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
