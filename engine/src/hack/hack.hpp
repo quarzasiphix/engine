@@ -7,6 +7,8 @@
 
 namespace engine {
 	//class ENGINE_API event;
+	class ENGINE_API windowResizeEvent;
+	class ENGINE_API event;
 	namespace hack {
 		struct ENGINE_API tasks;
 		class ENGINE_API hackor {
@@ -16,7 +18,12 @@ namespace engine {
 			//void onAttach();
 			void onUpdate();
 			//void onDetach();
-			//void onEvent(event& e);
+			void onEvent(engine::event& e);
+
+			void onUpdateRes(engine::windowResizeEvent& e) {
+				//m_task->scale = e.getWidth() + e.getHeight() / 2.0f;
+			}
+
 		};
 	}
 }

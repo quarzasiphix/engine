@@ -289,6 +289,10 @@ namespace engine {
 
 		}
 
+		void tasks::onEvent(event& e) {
+
+		}
+
 		/*enum class DataType {
 			Int,
 			Float,
@@ -510,15 +514,27 @@ namespace engine {
 		uintptr_t stackPointer = 0;  // Define a variable to store the RSP value
 
 		bool open_task = true;
-
+		bool set_callback = false;
 		void tasks::onUpdate() {
+			//scale = (ImGui::GetWindowSize().x + ImGui::GetWindowSize().y) / 2.0f;
 			ImGui::Begin("tasks", &open_task, ImGuiWindowFlags_None);
+			if (set_callback) {
+				glfwSetWindowSizeCallback(get_GLFWwindow(), [](GLFWwindow* window, int width, int height) {
+					WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+					data.Width = width;
+					data.Height = height;
 
+					engine::windowResizeEvent event(width, height);
+					data.EventCallback(event);
+				});
+			}
 			if (ImGui::Button("get list")) getList();
 			ImGui::Columns(3, "tabs", false);
-			ImGui::SetColumnWidth(0, 100); {
-				if (ImGui::Button("tasks", button)) tab = 1;
-				if (is_selected == true && m_proc->attached == true && ImGui::Button("attached", button)) tab = 2;
+			ImVec2 buttonSize(button.x + scale, button.y + scale);
+			ImGui::SetColumnWidth(0, 100.0f + scale); {
+				if (ImGui::Button("tasks", buttonSize)) tab = 1;
+				if (is_selected == true && m_proc->attached == true && 
+					ImGui::Button("attached", buttonSize)) tab = 2;
 			}
 
 			ImGui::SetColumnWidth(1, 600);
