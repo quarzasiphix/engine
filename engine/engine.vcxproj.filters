@@ -1,99 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="src">
+      <UniqueIdentifier>{1dcc2ce0-6562-4b78-ac98-96a6fbe79d03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="includes">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="src\renderer">
+      <UniqueIdentifier>{1617b5e8-6d7c-479a-830f-2e8d86e59ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer\opengl">
+      <UniqueIdentifier>{9d5faf6a-3c81-4ef3-8098-ad73211a2516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer\events">
+      <UniqueIdentifier>{8243f5d7-88af-4601-adec-b68377a33fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\hack">
+      <UniqueIdentifier>{076259a3-f634-4b27-b748-a0d4bd921aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\app">
+      <UniqueIdentifier>{06a69029-8629-4eb2-a389-f2f0f355e205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer\gui">
+      <UniqueIdentifier>{5c01aa21-0ed4-4f5e-9848-0c917645a0e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\hack\proc">
+      <UniqueIdentifier>{08183c54-6f0b-4fcc-a38a-ed39a31e59da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\hack\tasks">
+      <UniqueIdentifier>{49c798fa-4d99-43fd-b259-7b9fe8e86f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\log">
+      <UniqueIdentifier>{a1c191f3-0d17-41fb-9f09-a6f6d2c85d5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\app\app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\opengl\opengl.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src\app</Filter>
     </ClCompile>
     <ClCompile Include="src\renderer\gui\gui.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src\renderer\gui</Filter>
     </ClCompile>
-    <ClCompile Include="src\hack\process\proc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hack\tasks\tasks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\renderer\opengl\opengl.cpp">
+      <Filter>src\renderer\opengl</Filter>
     </ClCompile>
     <ClCompile Include="src\hack\hack.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src\hack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hack\process\proc.cpp">
+      <Filter>src\hack\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hack\tasks\tasks.cpp">
+      <Filter>src\hack\tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\log.cpp">
+      <Filter>src\log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\app\app.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entry.h">
-      <Filter>Header Files</Filter>
+      <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="includes\common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\log\log.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="includes\enpch.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="includes\window.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\entry.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\windows\WindowsWindow.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\engine.h">
+      <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\opengl\opengl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\gui\gui.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\events\events.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderer\renderer.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\app\app.hpp">
+      <Filter>src\app</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\events\appEvents.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>src\renderer\events</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\events\keyEvents.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>src\renderer\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\events\events.hpp">
+      <Filter>src\renderer\events</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\events\mouseEvents.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>src\renderer\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\hack\process\proc.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\renderer\gui\gui.hpp">
+      <Filter>src\renderer\gui</Filter>
     </ClInclude>
-    <ClInclude Include="src\hack\tasks\tasks.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\renderer\opengl\opengl.hpp">
+      <Filter>src\renderer\opengl</Filter>
     </ClInclude>
     <ClInclude Include="src\hack\hack.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>src\hack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hack\process\proc.hpp">
+      <Filter>src\hack\proc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hack\tasks\tasks.hpp">
+      <Filter>src\hack\tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\log.hpp">
+      <Filter>src\log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\renderer.hpp">
+      <Filter>src\renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

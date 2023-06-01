@@ -78,12 +78,10 @@
     <ClInclude Include="includes\common.hpp" />
     <ClInclude Include="includes\core.h" />
     <ClInclude Include="includes\engine.h" />
-    <ClInclude Include="includes\window.hpp" />
     <ClInclude Include="src\renderer\opengl\opengl.hpp" />
     <ClInclude Include="src\app\app.hpp" />
     <ClInclude Include="src\entry.h" />
     <ClInclude Include="src\log\log.hpp" />
-    <ClInclude Include="src\platform\windows\WindowsWindow.hpp" />
     <ClInclude Include="src\renderer\renderer.hpp" />
   </ItemGroup>
   <ItemGroup>
