@@ -10,7 +10,7 @@ namespace engine {
 			Double
 		};
 
-		//class ENGINE_API signature;
+		class ENGINE_API signature;
 		class ENGINE_API proc {
 			std::wstring m_name;
 			DWORD m_pid{};
@@ -50,7 +50,7 @@ namespace engine {
 			~proc();
 			
 			thread* m_thread;
-			//signature* m_sigs;
+			signature* m_sigs;
 
 			void attach();
 			bool attached = false;

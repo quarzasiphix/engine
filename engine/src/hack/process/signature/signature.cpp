@@ -1,7 +1,37 @@
 #define HACK
 #include "signature.hpp"
 
-bool engine::hack::signature::scan(const char sig[]) {
+DWORD engine::hack::signature::scan(const char sig[]) {
+    BYTE* scanEnd = (BYTE*)m_proc->get_startAddress() + m_proc->get_size()  - strlen(sig) / 3;
+    for (BYTE* p = (BYTE*)m_proc->get_startAddress(); p < scanEnd; ++p) {
+        bool found = true;
+        const char* signaturePtr = sig;
+
+        while (*signaturePtr != '\0') {
+            if (*signaturePtr != ' ' && *signaturePtr != '?') {
+                BYTE expectedByte = (BYTE)strtoul(signaturePtr, nullptr, 16);
+                if (expectedByte != *p) {
+                    found = false;
+                    break;
+                }
+
+                p++;
+                signaturePtr += 2;
+            }
+
+            signaturePtr++;
+        }
+
+        if (found) {
+            // Calculate the memory address based on the instruction structure
+            DWORD variableAddress = *(DWORD*)(p + 3);  // Adjust the offset as needed
+            return variableAddress;
+        }
+    }
+
+    return 0;
+    
+    /* old example
     SIZE_T processSize = m_proc->get_size();
     unsigned char* processMemory = new unsigned char[processSize];
 
@@ -38,4 +68,5 @@ bool engine::hack::signature::scan(const char sig[]) {
     delete[] processMemory;
 
     return false;
+    */
 }

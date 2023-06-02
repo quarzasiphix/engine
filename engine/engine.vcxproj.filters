@@ -58,6 +58,7 @@
     <ClCompile Include="src\log\log.cpp">
       <Filter>src\log</Filter>
     </ClCompile>
+    <ClCompile Include="src\hack\process\signature\signature.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\core.h">
@@ -110,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="src\renderer\renderer.hpp">
       <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hack\process\signature\signature.hpp">
+      <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

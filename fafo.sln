@@ -24,6 +24,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw", "dependencies\glfw\g
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui", "dependencies\imgui\imgui.vcxproj", "{D3531510-74A8-4540-8EA5-71B216BB8248}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "json", "json\json.vcxproj", "{32F39FC7-8E7D-48BB-A4D0-713044ADA0DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -39,8 +41,8 @@ Global
 		{77FAAAE7-4D51-4B59-9294-4181A3630652}.Release|x64.Build.0 = Release|x64
 		{D3531510-74A8-4540-8EA5-71B216BB8248}.Release|x64.ActiveCfg = Release|x64
 		{D3531510-74A8-4540-8EA5-71B216BB8248}.Release|x64.Build.0 = Release|x64
-		{5C1DECA5-9573-411F-9F6D-E890AC0998A3}.Release|x64.ActiveCfg = Release|x64
-		{5C1DECA5-9573-411F-9F6D-E890AC0998A3}.Release|x64.Build.0 = Release|x64
+		{32F39FC7-8E7D-48BB-A4D0-713044ADA0DC}.Release|x64.ActiveCfg = Release|x64
+		{32F39FC7-8E7D-48BB-A4D0-713044ADA0DC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,7 +53,7 @@ Global
 		{68349C45-A697-4267-8B55-C2E36AA6F5CB} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
 		{77FAAAE7-4D51-4B59-9294-4181A3630652} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
 		{D3531510-74A8-4540-8EA5-71B216BB8248} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
-		{5C1DECA5-9573-411F-9F6D-E890AC0998A3} = {1A622404-AA35-4553-9B92-CB6BA8BA3C18}
+		{32F39FC7-8E7D-48BB-A4D0-713044ADA0DC} = {46F53805-7BF7-45C6-A91C-8A13F7CB640B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53B6D290-07B0-4269-A213-4CE02C232AA2}

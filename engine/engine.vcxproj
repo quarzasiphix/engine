@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|x64">
@@ -59,6 +59,7 @@
   <ItemGroup>
     <ClCompile Include="src\hack\hack.cpp" />
     <ClCompile Include="src\hack\process\proc.cpp" />
+    <ClCompile Include="src\hack\process\signature\signature.cpp" />
     <ClCompile Include="src\hack\tasks\tasks.cpp" />
     <ClCompile Include="src\renderer\gui\gui.cpp" />
     <ClCompile Include="src\renderer\opengl\opengl.cpp" />
@@ -68,6 +69,7 @@
   <ItemGroup>
     <ClInclude Include="src\hack\hack.hpp" />
     <ClInclude Include="src\hack\process\proc.hpp" />
+    <ClInclude Include="src\hack\process\signature\signature.hpp" />
     <ClInclude Include="src\hack\tasks\tasks.hpp" />
     <ClInclude Include="src\renderer\events\appEvents.hpp" />
     <ClInclude Include="src\renderer\events\events.hpp" />

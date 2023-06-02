@@ -157,7 +157,7 @@ namespace engine {
             is_access = 1;
             attached = true;
 
-            //m_sigs = new signature(this);
+            m_sigs = new signature(this);
         }
 
 

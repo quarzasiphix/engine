@@ -17,7 +17,8 @@ namespace engine {
 				return m_patterns;
 			}
 			
-			bool scan(const char* sig);
+			DWORD scan(const char* sig);
 		};
 	}
 }
+

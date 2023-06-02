@@ -182,7 +182,7 @@ namespace engine {
 				if (ImGui::BeginTable(name, 2, flags)) {
 					ImGui::TableNextRow();
 					ImGui::TableSetColumnIndex(0);
-					ImGui::Text("favorite processes");
+					ImGui::Text(std::string(name + std::string(" processes")).c_str());
 					ImGui::TableSetColumnIndex(1);
 					ImGui::Text("proc id's");
 					for (int row = 0; row < procs.size(); row++) {
@@ -429,73 +429,115 @@ namespace engine {
 			}
 		}
 
+		char siginput[256] = "";
+
+		bool scanned = false;
+		DWORD sigaddress;
+
 		void tasks::selectedAccess() {
 			ImGui::Text("selected: %s id: %d", utf16_to_utf8(selected.first), selected.second);
-			switch (Access) {
-			case 0:
-				ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
-				if (addressinput != 0) 
-					makeAccessPoint();
-					//if(ImGui::Button("Create access point")) 
-				
-				else ImGui::Text("No address inputed");
+			float height = ImGui::GetWindowHeight();
+			height = height - (float)150;
+			float width = ImGui::GetWindowWidth();
+			//if(ImGui::Button(""))
+			//if (ImGui::BeginTabItem("access memory address")) {
+			ImGui::InputScalar("Address", ImGuiDataType_U64, &addressinput, NULL, NULL, "%016llX", ImGuiInputTextFlags_CharsHexadecimal);
+			if (addressinput != 0)
+				makeAccessPoint();
+			//if(ImGui::Button("Create access point")) 
 
-				if (!addressPoints.empty()) {
-					for (int i = 0; i < addressPoints.size(); i++) {
-						if (ImGui::Button(("Remove##" + std::to_string(i)).c_str())) {
-							addressPoints.erase(addressPoints.begin() + i);
-							// Decrease the loop counter to account for the removed element
-							i--;
-						}
-						ImGui::SameLine();
-						addressAccess(addressPoints[i], i);
-		
+			else ImGui::Text("No address inputed");
+			
+			ImGui::BeginChild("memoryaccess", ImVec2(width / 2, height / 2 + height / 5), true);
+
+			if (!addressPoints.empty()) {
+				for (int i = 0; i < addressPoints.size(); i++) {
+					if (ImGui::Button(("Remove##" + std::to_string(i)).c_str())) {
+						addressPoints.erase(addressPoints.begin() + i);
+						// Decrease the loop counter to account for the removed element
+						i--;
 					}
+					ImGui::SameLine();
+					addressAccess(addressPoints[i], i);
+
 				}
-
-				else {
-					ImGui::Text("No address points created...");
-				}
-
-				/*
-			case 1:
-				ImGui::Text("signature scan");
-
-				char siginput[256];
-				strcpy(siginput, signatureinput);  // Copy the initial name into the editedName buffer
-
-				// ImGui frame
-				ImGui::InputText("##input signature", siginput, sizeof(siginput));
-
-				// When you're ready to update the original name with the edited name
-				if (ImGui::Button("scan")) {
-					strcpy(const_cast<char*>(signatureinput), siginput);
-					if (m_proc->find_sig(signatureinput) == false) found_sig = false;
-					if (found_sig) {
-						uintptr_t address = m_proc->m_sigs->m_patterns[sigs_added].second;
-
-						// Convert the uintptr_t to a string using std::stringstream
-						std::stringstream ss;
-						ss << std::hex << address;
-						std::string addressStr = ss.str();
-						ImGui::Text("Found sig, address: %s", addressStr.c_str());
-		
-						if (sig_added) {
-							if (ImGui::Button("create access point for signature")) {
-								addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
-								sig_added = true;
-							}
-						}
-						
-						/*
-						else {
-							ImGui::Text("")
-						}
-					}
-					*/
-				
 			}
+
+			else {
+				ImGui::Text("No address points created...");
+			}
+
+			ImGui::EndChild();
+
+			ImGui::Text("signature (in development, not working)");
+
+			ImGui::InputText("##input signature", siginput, sizeof(siginput));
+			if (ImGui::Button("scan")) {
+				try {
+					sigaddress = m_proc->m_sigs->scan(siginput);
+					scanned = true;
+				}
+				catch (const std::exception& ex) {
+					EN_WARN("Exception caught scanning sig: {0}", ex.what());
+				}
+				catch (...) {
+					EN_WARN("Unknown exception caught scanning sig");
+				}
+			}
+
+			if (!scanned) {
+				if (sigaddress != 0) {
+					ImGui::Text("Memory address: %u", sigaddress);
+				}
+				else {
+					ImGui::Text("Variable not found!");
+				}
+			}
+				//strcpy(siginput, signatureinput);  // Copy the initial name into the editedName buffer
+
+
+			//}
+			//if (ImGui::BeginTabItem("signature")) {
+		//		if (ImGui::Button("scan (temp)"));
+			//}
+			/*
+		case 1:
+			ImGui::Text("signature scan");
+
+			char siginput[256];
+			strcpy(siginput, signatureinput);  // Copy the initial name into the editedName buffer
+
+			// ImGui frame
+			ImGui::InputText("##input signature", siginput, sizeof(siginput));
+
+			// When you're ready to update the original name with the edited name
+			if (ImGui::Button("scan")) {
+				strcpy(const_cast<char*>(signatureinput), siginput);
+				if (m_proc->find_sig(signatureinput) == false) found_sig = false;
+				if (found_sig) {
+					uintptr_t address = m_proc->m_sigs->m_patterns[sigs_added].second;
+
+					// Convert the uintptr_t to a string using std::stringstream
+					std::stringstream ss;
+					ss << std::hex << address;
+					std::string addressStr = ss.str();
+					ImGui::Text("Found sig, address: %s", addressStr.c_str());
+
+					if (sig_added) {
+						if (ImGui::Button("create access point for signature")) {
+							addressPoints.push_back(std::make_unique<accessMemory<double>>(*m_proc, addressinput, selectedType));
+							sig_added = true;
+						}
+					}
+
+					/*
+					else {
+						ImGui::Text("")
+					}
+				}
+				*/
 		}
+		
 
 		void tasks::listAccess() {
 			//ImGui::Text("tasks");
@@ -537,7 +579,8 @@ namespace engine {
 					ImGui::Button("attached", buttonSize)) tab = 2;
 			}
 
-			ImGui::SetColumnWidth(1, 600);
+			float width = ImGui::GetWindowWidth();
+			ImGui::SetColumnWidth(1, width / 2);
 			ImGui::NextColumn();
 
 			switch (tab) {
