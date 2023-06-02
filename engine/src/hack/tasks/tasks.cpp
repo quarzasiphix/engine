@@ -91,6 +91,18 @@ namespace engine {
 
 			CloseHandle(hProcessSnap);
 
+			std::wifstream inputFile("C:\\q\\fav.procs");
+			std::vector<std::wstring> namesRead;
+			std::wstring name;
+			while (std::getline(inputFile, name)) {
+				std::pair<std::wstring, DWORD> imported;
+				m_proc = new proc(name);
+				if (m_proc->get_proc() != NULL)  
+					imported = std::make_pair(name, m_proc->get_pid());
+				else imported = std::make_pair(name, 0);
+				fav_procs.push_back(imported);
+			}
+
 			get_list = true;
 		}
 
@@ -169,6 +181,11 @@ namespace engine {
 		static char all_search[256] = "";
 		static char fav_search[256] = "";
 
+		void save_proc(std::wstring name) {
+			std::wofstream outputFile("C:\\q\\fav.procs");
+			outputFile << name << std::endl;
+		}
+
 		void tasks::lists(const char* name, std::vector<std::pair<std::wstring, DWORD>> procs) {
 			if (ImGui::CollapsingHeader(name)) {
 				if (name == "all") {
@@ -222,6 +239,7 @@ namespace engine {
 										if (ImGui::Button("add favorite")) {
 											selected = std::make_pair(procs[row].first, procs[row].second);
 											fav_procs.push_back(selected);
+											save_proc(procs[row].first);
 										}
 									}
 
@@ -237,11 +255,24 @@ namespace engine {
 									}
 									
 									else {
-										if (ImGui::Button("attach")) {
-											selected = std::make_pair(procs[row].first, procs[row].second);
-											on_select();
-											if (m_proc->attached == true) is_selected = true;
+										if (procs[row].second == 0) {
+											if (ImGui::Button("find and attach")) {
+												selected = std::make_pair(procs[row].first, procs[row].second);
+												on_select();
+												if (m_proc->attached == true) {
+													selected = std::make_pair(procs[row].first, m_proc->get_pid());
+													is_selected = true;
+												}
+											}
 										}
+										else {
+											if (ImGui::Button("attach")) {
+												selected = std::make_pair(procs[row].first, procs[row].second);
+												on_select();
+												if (m_proc->attached == true) is_selected = true;
+											}
+										}
+
 									}
 									ImGui::EndTable();
 								}
