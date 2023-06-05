@@ -84,7 +84,6 @@ namespace engine {
 
             //Sleep(300);
             //EN_INFO("waiting for process: {0}", name);
-
             //pid = GetProcessIdByName(name);
             //}
 
@@ -160,7 +159,48 @@ namespace engine {
             m_sigs = new signature(this);
         }
 
+        bool proc::injectDLL(const char* dllpath) {
+            // Allocate memory in the target process for the DLL path
+            LPVOID dllPathRemote = VirtualAllocEx(get_proc(), NULL, strlen(dllpath) + 1, MEM_COMMIT, PAGE_READWRITE);
+            if (dllPathRemote == NULL) {
+                // Failed to allocate memory in the target process
+                EN_WARN("Faield to allocate memory in target process");
+                return false;
+            }
 
+            // Write the DLL path to the allocated memory in the target process
+            if (!WriteProcessMemory(get_proc(), dllPathRemote, dllpath, strlen(dllpath) + 1, NULL))
+            {
+                // Failed to write the DLL path to the target process
+                VirtualFreeEx(get_proc(), dllPathRemote, 0, MEM_RELEASE);
+                EN_WARN("Failed to inject dll");
+                return false;
+            }
+
+            // Get the address of the LoadLibrary function in kernel32.dll
+            HMODULE hKernel32 = GetModuleHandleA("kernel32.dll");
+            FARPROC loadLibraryAddr = GetProcAddress(hKernel32, "LoadLibraryA");
+
+            // Create a remote thread in the target process to call LoadLibrary and load the DLL
+            HANDLE hRemoteThread = CreateRemoteThread(get_proc(), NULL, 0, (LPTHREAD_START_ROUTINE)loadLibraryAddr, dllPathRemote, 0, NULL);
+            if (hRemoteThread == NULL) {
+                // Failed to create a remote thread
+                VirtualFreeEx(get_proc(), dllPathRemote, 0, MEM_RELEASE);
+                EN_WARN("Failed to create remote thread");
+                return false;
+            }
+
+            // Wait for the remote thread to finish executing
+            WaitForSingleObject(hRemoteThread, INFINITE);
+
+            // Clean up allocated resources
+            VirtualFreeEx(get_proc(), dllPathRemote, 0, MEM_RELEASE);
+            CloseHandle(hRemoteThread);
+
+            EN_WARN("injected dll");
+            return true;
+        
+        }
         /*
         template<typename T>
         bool accessMemory<T>::writeMemory() {

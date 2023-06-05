@@ -1,6 +1,7 @@
 #define HACK
 #include "signature.hpp"
 
+
 DWORD engine::hack::signature::scan(const char sig[]) {
     BYTE* scanEnd = (BYTE*)m_proc->get_startAddress() + m_proc->get_size()  - strlen(sig) / 3;
     for (BYTE* p = (BYTE*)m_proc->get_startAddress(); p < scanEnd; ++p) {

@@ -586,6 +586,11 @@ namespace engine {
 
 		uintptr_t stackPointer = 0;  // Define a variable to store the RSP value
 
+		//ImGuiFileDialog fileDialog;
+		std::string selectedFilePath;
+		int file_selecing = 0;
+		bool injected = false;
+
 		bool open_task = true;
 		bool set_callback = false;
 		void tasks::onUpdate() {
@@ -611,7 +616,7 @@ namespace engine {
 			}
 
 			float width = ImGui::GetWindowWidth();
-			ImGui::SetColumnWidth(1, width / 2);
+			ImGui::SetColumnWidth(1, width / 2 - 50);
 			ImGui::NextColumn();
 
 			switch (tab) {
@@ -635,6 +640,61 @@ namespace engine {
 			if (attached == true) {
 				if (m_proc->attached == true) {
 					ImGui::Text("attached: %s id: %d", utf16_to_utf8(selected.first), selected.second);
+					ImGui::SameLine();
+					if (ImGui::Button("inject dll")) {
+						file_selecing = 1;
+						std::thread thread([this]() {
+							//ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Choose File", ".cpp,.h,.hpp,.dll", ".");
+							OPENFILENAMEA ofn;
+							CHAR szFile[260] = { 0 };
+
+							ZeroMemory(&ofn, sizeof(ofn));
+							ofn.lStructSize = sizeof(ofn);
+							ofn.hwndOwner = NULL;
+							ofn.lpstrFile = szFile;
+							ofn.nMaxFile = sizeof(szFile);
+							ofn.lpstrFilter = "DLL Files (*.dll)\0*.dll\0All Files (*.*)\0*.*\0";
+							ofn.nFilterIndex = 1;
+							ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+							if (GetOpenFileNameA(&ofn) == TRUE) {
+								// Handle the selected file
+								selectedFilePath = std::string(szFile);
+								EN_INFO("selected {0}", selectedFilePath);
+								// Do something with the selectedFilePath
+								// ...
+								file_selecing = 2;
+								if (m_proc->injectDLL(selectedFilePath.c_str())) {
+									injected = true;
+								}
+								return;
+							}
+							file_selecing = 0;
+							EN_INFO("canceled injecting");
+							});
+
+						// Detach the thread so it runs independently
+						thread.detach();
+			
+					}
+					if (file_selecing == 2) {
+						ImGui::Text("selected dll : %s", selectedFilePath.c_str());
+					}
+
+					/*
+					// display
+					if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey")) {
+						// action if OK
+						if (ImGuiFileDialog::Instance()->IsOk()) {
+							std::string filePathName = ImGuiFileDialog::Instance()->GetFilePathName();
+							std::string filePath = ImGuiFileDialog::Instance()->GetCurrentPath();
+							// action
+						}
+						// close
+						ImGuiFileDialog::Instance()->Close();
+					}
+					*/
+
 					//int mainThreadId = m_proc->m_thread->get_mainthreadid();
 					//ImGui::Text("main thread id: %i", mainThreadId);
 					//m_proc->get_address(start, end);

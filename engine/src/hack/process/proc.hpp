@@ -84,6 +84,8 @@ namespace engine {
 				end = startAddress + module_info.SizeOfImage;
 			}
 
+			bool injectDLL(const char* dllpath);
+
 			// Custom exception type for read failures
 			struct ReadMemoryException : public std::exception {
 				const char* what() const noexcept override {

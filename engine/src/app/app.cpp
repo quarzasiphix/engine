@@ -34,7 +34,7 @@ namespace engine {
 		dispatcher.dispatch<windowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 		//dispatcher.dispatch<windowResizeEvent>(BIND_EVENT_FN(onWindowResize));
 
-		EN_CORE_INFO("Event {}", e.toString());
+		//EN_CORE_INFO("Event {}", e.toString());
 
 		/*for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
 			(*--it)->onEvent(e);

@@ -18,6 +18,7 @@
 #include <unordered_set>
 #include <sstream>
 #include <codecvt>
+#include <commdlg.h>
 #include <string>
 #include <memory>
 #include <functional>
